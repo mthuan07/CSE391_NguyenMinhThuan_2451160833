@@ -1,0 +1,281 @@
+/* ==========================================================================
+   1. BASE STYLES & MOBILE FIRST (Mặc định cho toàn bộ màn hình dưới 768px)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    /* Font size gốc nhỏ gọn trên thiết bị di động */
+    font-size: 14px; 
+}
+
+.page-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+}
+
+/* ẢNH RESPONSIVE THẦN THÁNH */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* STYLE CHI TIẾT HEADER & HAMBURGER (MOBILE) */
+.page-header {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #38bdf8;
+}
+
+.hamburger-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ffffff;
+    user-select: none;
+}
+
+.menu-checkbox {
+    display: none; /* Giấu nút checkbox ẩn đi */
+}
+
+/* Đóng menu mặc định trên điện thoại */
+.main-nav {
+    display: none; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1e293b;
+    border-radius: 0 0 6px 6px;
+    z-index: 100;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-links a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-bottom: 1px solid #334155;
+}
+
+/* Kỹ thuật click nút Hamburger hiện Menu không dùng JS */
+.menu-checkbox:checked ~ .main-nav {
+    display: block;
+}
+
+/* ẨN SIDEBAR VÀ ADS BAR TRÊN MOBILE THEO YÊU CẦU */
+.sidebar-filter {
+    display: none;
+}
+
+.ads-bar {
+    display: none;
+}
+
+/* PRODUCT GRID TRÊN MOBILE (1 CỘT) */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.img-box {
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-title {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+/* FOOTER MOBILE */
+.page-footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   2. TABLET BREAKPOINT (Kích thước từ 768px đến 1023px)
+   ========================================================================== */
+@media (min-width: 768px) {
+    body {
+        font-size: 15px; /* Tăng kích thước font chữ tổng thể */
+    }
+
+    .page-container {
+        grid-template-columns: 1fr; /* Vẫn giữ 1 cột lớn dọc cho các vùng lớn */
+    }
+
+    /* Ẩn hoàn toàn nút hamburger, chuyển menu thành hàng ngang */
+    .hamburger-btn {
+        display: none;
+    }
+
+    .main-nav {
+        display: block !important;
+        position: static;
+        width: auto;
+        background-color: transparent;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        padding: 0;
+        border-bottom: none;
+    }
+
+    /* HIỂN THỊ SIDEBAR DẠNG NGANG (FILTER DROPDOWN) */
+    .sidebar-filter {
+        display: block;
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sidebar-title {
+        font-size: 1rem;
+    }
+
+    .filter-dropdown-wrapper .filter-select {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
+    }
+
+    /* PRODUCT GRID TRÊN TABLET (2 CỘT) */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
+   3. DESKTOP BREAKPOINT (Kích thước từ 1024px trở lên)
+   ========================================================================== */
+@media (min-width: 1024px) {
+    body {
+        font-size: 16px; /* Font size lớn nhất cho máy tính */
+    }
+
+    /* TỔ CHỨC LẠI GRID CHÍNH THÀNH 3 CỘT THEO SƠ ĐỒ ĐỀ BÀI */
+    .page-container {
+        grid-template-columns: 240px 1fr 200px;
+        grid-template-areas: 
+            "header  header  header"
+            "sidebar main    ads"
+            "footer  footer  footer";
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Gán vùng cụ thể cho các khối lớn */
+    .page-header   { grid-area: header; }
+    .sidebar-filter { grid-area: sidebar; }
+    .product-grid  { grid-area: main; }
+    .ads-bar       { grid-area: ads; }
+    .page-footer   { grid-area: footer; }
+
+    /* QUAY LẠI SIDEBAR DẠNG DỌC TRUYỀN THỐNG */
+    .sidebar-filter {
+        display: block;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 15px;
+        height: fit-content;
+    }
+
+    /* HIỂN THỊ ADS BAR QUẢNG CÁO */
+    .ads-bar {
+        display: block;
+        background-color: #fef08a;
+        border: 2px dashed #ca8a04;
+        border-radius: 6px;
+        padding: 20px;
+        color: #854d0e;
+        height: fit-content;
+        text-align: center;
+    }
+    
+    .ads-content p {
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+    .ads-content span {
+        font-size: 0.8rem;
+    }
+
+    /* PRODUCT GRID TRÊN DESKTOP (4 CỘT CARDS) */
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Hiệu ứng di chuột nhẹ tăng trải nghiệm cho Desktop */
+    .product-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    }
+}
