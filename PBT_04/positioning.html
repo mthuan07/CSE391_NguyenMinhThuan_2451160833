@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioning Playground - Thực hành định vị CSS</title>
+    <!-- Liên kết tới file CSS bên ngoài -->
+    <link rel="stylesheet" href="positioning.css">
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <!-- 1. FIXED HEADER (Định vị cố định luôn ở trên cùng) -->
+        <header class="fixed-header">
+            <div class="logo">LOGO.DEV</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#products">Sản phẩm</a></li>
+                    <li><a href="#features">Ưu điểm</a></li>
+                    <li><a href="#theory">Lý thuyết</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Khung chứa chính bố cục 2 cột -->
+        <div class="main-container">
+
+            <!-- 2. STICKY SIDEBAR (Dính khi cuộn chuột xuống) -->
+            <aside class="sticky-sidebar">
+                <h2 class="sidebar-title">Bài thực hành B1</h2>
+                <ul class="sidebar-menu">
+                    <li><a href="#products">🔥 Sản phẩm HOT</a></li>
+                    <li><a href="#features">⭐ Điểm nhấn thiết kế</a></li>
+                    <li><a href="#theory">📘 Lý thuyết cốt lõi</a></li>
+                </ul>
+            </aside>
+
+            <!-- Khu vực nội dung bên phải -->
+            <main class="content-area">
+                
+                <!-- Section Sản phẩm -->
+                <section id="products">
+                    <h2 class="section-title">Danh sách sản phẩm nổi bật</h2>
+                    
+                    <div class="product-grid">
+                        
+                        <!-- Card Sản phẩm 1 (Có chứa Badge absolute) -->
+                        <div class="product-card">
+                            <!-- BADGE ABSOLUTE: Nằm ở góc phải trên của Card -->
+                            <div class="badge-hot">HOT</div>
+                            
+                            <div class="product-img-box">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                            </div>
+                            <h3 class="product-title">Laptop Gaming Pro X</h3>
+                            <p class="product-price">29.990.000đ</p>
+                        </div>
+
+                        <!-- Card Sản phẩm 2 (Có chứa Badge absolute) -->
+                        <div class="product-card">
+                            <!-- BADGE ABSOLUTE -->
+                            <div class="badge-hot">HOT</div>
+                            
+                            <div class="product-img-box">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                            </div>
+                            <h3 class="product-title">Smartphone Ultra 5G</h3>
+                            <p class="product-price">18.490.000đ</p>
+                        </div>
+
+                        <!-- Card Sản phẩm 3 (Sản phẩm thường, không có Badge) -->
+                        <div class="product-card">
+                            <div class="product-img-box">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                            </div>
+                            <h3 class="product-title">Bàn vẽ điện tử Wacom</h3>
+                            <p class="product-price">4.200.000đ</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Section văn bản dài để tạo cuộn trang thoải mái -->
+                <section id="features" style="margin-top: 40px;">
+                    <h2 class="section-title">Phân tích kỹ thuật CSS Positioning</h2>
+                    
+                    <div class="demo-text-box">
+                        <p><strong>Cố định (Fixed Header):</strong> Header được cố định sát mép trên cùng của viewport. Trình duyệt liên tục giữ nó nằm trên mọi khối nội dung khác khi cuộn nhờ giá trị <code>z-index: 1000</code>.</p>
+                        <p><strong>Dính thông minh (Sticky Sidebar):</strong> Sidebar bên trái di chuyển dọc theo màn hình khi cuộn chuột. Nó chỉ dính lại khi chạm ngưỡng <code>top: 80px</code> (cách header 20px), tạo trải nghiệm điều hướng tuyệt vời.</p>
+                        <p><strong>Thẻ thông báo HOT (Absolute Badge):</strong> Nằm độc lập ở góc trên bên phải nhờ lớp bọc ngoài Card được khai báo <code>position: relative</code> để làm gốc hệ tọa độ.</p>
+                    </div>
+
+                    <div class="demo-text-box" id="theory" style="margin-top: 20px;">
+                        <h3 style="margin-bottom: 15px; color: #1e293b;">📘 Định nghĩa lý thuyết nộp bài:</h3>
+                        <p>1. <strong>position: fixed</strong> định vị phần tử tương đối so với khung hình trình duyệt (viewport), hoàn toàn tách khỏi luồng tài liệu thông thường.</p>
+                        <p>2. <strong>position: sticky</strong> là sự kết hợp giữa relative và fixed. Nó di chuyển bình thường theo luồng trang cho đến khi đạt tới vị trí cuộn định sẵn thì dính cứng lại.</p>
+                        <p>3. <strong>position: absolute</strong> định vị tuyệt đối phần tử dựa theo tổ tiên gần nhất có khai báo thuộc tính position (khác static).</p>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
+        <!-- 4. FIXED SCROLL TO TOP BUTTON (Nút quay lại đầu trang nằm cố định ở góc dưới phải) -->
+        <a href="#" class="scroll-top-btn" title="Cuộn lên đầu trang">↑</a>
+
+    </div>
+
+</body>
+</html>

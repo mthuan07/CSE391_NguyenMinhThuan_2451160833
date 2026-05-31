@@ -1,0 +1,245 @@
+/* ==========================================================================
+   1. RESET BOX MODEL & TYPOGRAPHY
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* Khung bọc ngoài tạo chiều cao lớn để trang có thanh cuộn dọc */
+.wrapper {
+    min-height: 2000px; /* Tạo cuộn trang dài để kiểm tra sticky/fixed */
+    padding-top: 80px;  /* Đệm khoảng trống phía trên tránh bị Header che */
+}
+
+/* ==========================================================================
+   2. FIXED HEADER (Định vị cố định)
+   ========================================================================== */
+.fixed-header {
+    position: fixed;   /* Cố định phần tử */
+    top: 0;
+    left: 0;
+    width: 100%;       /* Full chiều ngang màn hình */
+    height: 60px;      /* Chiều cao đúng 60px */
+    background-color: #1e293b; /* Màu nền xanh navy đậm */
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;     /* Đảm bảo luôn nằm trên cùng các phần tử khác khi cuộn */
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #38bdf8;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+/* ==========================================================================
+   3. LAYOUT CONTAINER & STICKY SIDEBAR
+   ========================================================================== */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Cấu hình Sidebar dính thông minh */
+.sticky-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;  /* Kích hoạt định vị sticky */
+    top: 80px;         /* Cách mép trên màn hình 80px khi dính (dưới header 60px) */
+    height: fit-content; /* Ôm khít nội dung bên trong để thuộc tính sticky hoạt động */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #38bdf8;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding-left: 15px;
+}
+
+/* Khu vực nội dung bên phải */
+.content-area {
+    flex-grow: 1;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #0f172a;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+/* Lưới hiển thị danh sách sản phẩm */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* ==========================================================================
+   4. PRODUCT CARD & ABSOLUTE BADGE (Gốc Relative -> Con Absolute)
+   ========================================================================== */
+.product-card {
+    position: relative; /* Làm gốc tọa độ cho phần tử con absolute bám vào */
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-img-box {
+    width: 100%;
+    height: 160px;
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #64748b;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ef4444;
+}
+
+/* Badge màu đỏ dạng tròn định vị tuyệt đối so với Card */
+.badge-hot {
+    position: absolute; /* Định vị tuyệt đối */
+    top: 10px;          /* Cách mép trên của Card 10px */
+    right: 10px;        /* Cách mép phải của Card 10px */
+    background-color: #ef4444; /* Nền màu đỏ */
+    color: #ffffff;            /* Chữ trắng */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;        /* Tạo hình tròn hoàn hảo */
+    font-weight: 800;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
+    border: 2px solid #ffffff; /* Tạo viền trắng bọc quanh để tách biệt */
+    z-index: 10;
+}
+
+/* ==========================================================================
+   5. FIXED SCROLL TO TOP BUTTON (Nút cuộn lên đầu trang)
+   ========================================================================== */
+.scroll-top-btn {
+    position: fixed;   /* Định vị cố định so với viewport */
+    bottom: 30px;      /* Cách mép dưới trình duyệt 30px */
+    right: 30px;       /* Cách mép phải trình duyệt 30px */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Tạo hình tròn */
+    background-color: #38bdf8;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.scroll-top-btn:hover {
+    background-color: #0284c7;
+    transform: translateY(-5px);
+}
+
+/* Hộp văn bản giả lập */
+.demo-text-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.demo-text-box p {
+    margin-bottom: 15px;
+    color: #475569;
+}

@@ -1,0 +1,300 @@
+/* ==========================================================================
+   1. RESET & GENERAL STYLES
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding: 10px;
+}
+
+/* ==========================================================================
+   2. KHUNG LAYOUT GRID CHÍNH (Áp dụng Nâng cao mang đặt đặt tên vùng)
+   ========================================================================== */
+.ecommerce-grid {
+    display: grid;
+    /* Yêu cầu 1: Cột trái 200px, cột phải 200px, giữa co giãn tự do dùng 1fr */
+    grid-template-columns: 200px minmax(500px, 1fr) 200px;
+    
+    /* Thiết lập độ cao tự động cho các dòng */
+    grid-template-rows: auto auto auto auto;
+    
+    /* Khoảng cách khoảng trống phân tách rõ rệt giữa các khối */
+    gap: 20px;
+    
+    /* Định nghĩa bản đồ cấu trúc layout tổng thể (Grid Areas) */
+    grid-template-areas: 
+        "header  header  header"
+        "hero    hero    hero"
+        "sidebar main    ads"
+        "footer  footer  footer";
+        
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Gán tên khu vực cho các thẻ HTML */
+.page-header   { grid-area: header; }
+.hero-banner   { grid-area: hero; }
+.sidebar-filter { grid-area: sidebar; }
+.main-content  { grid-area: main; }
+.ads-banner    { grid-area: ads; }
+.page-footer   { grid-area: footer; }
+
+/* ==========================================================================
+   3. STYLING CHI TIẾT TỪNG VÙNG CHỨC NĂNG
+   ========================================================================== */
+
+/* HEADER STYLE */
+.page-header {
+    background-color: #0f172a;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 8px;
+}
+
+.page-header .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #38bdf8;
+}
+
+.page-header .search-bar {
+    background-color: #1e293b;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: #94a3b8;
+    width: 40%;
+}
+
+/* HERO BANNER STYLE */
+.hero-banner {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    color: #bfdbfe;
+    margin-bottom: 20px;
+}
+
+.btn-explore {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 10px 24px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* SIDEBAR FILTER STYLE */
+.sidebar-filter {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar-filter h3 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 5px;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-group h4 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #64748b;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* ADS BANNER STYLE */
+.ads-banner {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.ads-placeholder {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ads-placeholder p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.ads-box {
+    background-color: #fef08a;
+    border: 2px dashed #ca8a04;
+    color: #854d0e;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+/* FOOTER STYLE */
+.page-footer {
+    background-color: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   4. MAIN MAIN CONTENT - GRID CON 3 CỘT (PRODUCT CARDS)
+   ========================================================================== */
+.main-content {
+    display: grid;
+    /* Tạo cấu trúc 3 cột bằng nhau, co giãn an toàn */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+/* Thiết lập định dạng chung cho mỗi Card sản phẩm */
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-img {
+    background-color: #f1f5f9;
+    height: 140px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.card-info h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #1e293b;
+}
+
+.card-info .price {
+    font-weight: 700;
+    color: #ef4444;
+    margin-bottom: 10px;
+}
+
+.btn-add {
+    width: 100%;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    border: none;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: auto; /* Dính cố định nút xuống đáy card */
+    transition: all 0.2s ease;
+}
+
+.btn-add:hover {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+/* BONUSHACK: CARD NỔI BẬT CHIẾM 2 CỘT (Featured Product) */
+.featured-product {
+    grid-column: span 2; /* Chiếm diện tích bằng 2 ô thường */
+    flex-direction: row; /* Chuyển nội dung nằm ngang ra cho đẹp */
+    border: 2px solid #38bdf8;
+    position: relative;
+}
+
+.featured-product .card-img {
+    width: 45%;
+    height: 100%; /* Kéo dài chiều cao bằng card */
+    min-height: 180px;
+}
+
+.featured-product .card-info {
+    width: 55%;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-product .card-info h3 {
+    font-size: 1.25rem;
+}
+
+.featured-product .desc {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.badge-featured {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ef4444;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
