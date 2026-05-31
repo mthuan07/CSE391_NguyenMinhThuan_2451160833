@@ -1,0 +1,18 @@
+// Import các file cấu hình và hàm bổ trợ trước
+@import 'scss/variables';
+@import 'scss/mixins';
+
+// Thiết lập Reset CSS cơ bản có dùng biến
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-primary;
+    background-color: $bg-light;
+}
+
+// Import các thành phần giao diện vào sau cùng
+@import 'scss/components';

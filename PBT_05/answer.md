@@ -117,4 +117,13 @@ Ví dụ:
 # Ảnh 3
 ![alt text](screenshots/3.png)
 
+## Câu B3
+
+### 1. Giải thích công cụ sử dụng:
+Em sử dụng extension **Live Sass Compiler** (hoặc công cụ **Dart-Sass** qua NPM) trên phần mềm VS Code để thực hiện quá trình biên dịch tự động file `style.scss` thành file `style.css` truyền thống giúp trình duyệt đọc được.
+
+### 2. Câu lệnh thực hiện biên dịch bằng Terminal:
+Nếu thực hiện biên dịch thủ công thông qua command line (giao diện dòng lệnh), câu lệnh chuẩn được sử dụng là:
+```bash
+sass style.scss style.css --watch
 

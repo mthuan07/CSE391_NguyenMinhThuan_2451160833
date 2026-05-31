@@ -1,0 +1,191 @@
+/* ==========================================================================
+   1. RESET & GENERAL STYLES
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    min-height: 100vh;
+}
+
+.playground-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: #1e293b;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* ==========================================================================
+   EFFECT 4: LOADING SPINNER (Hoạt ảnh xoay vòng vô hạn)
+   ========================================================================== */
+.spinner-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.spinner-section p {
+    font-weight: 500;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    /* Tạo vòng tròn khuyết bằng viền */
+    border: 4px solid #e2e8f0;
+    border-top-color: #3b82f6; /* Viền trên màu xanh để làm điểm xoay */
+    border-radius: 50%;
+    /* Gán hoạt ảnh xoay linear chạy vô hạn */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   EFFECT 1: CARD HOVER EFFECT (Nâng nhẹ độ cao + tăng đổ bóng)
+   ========================================================================== */
+.product-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    /* Chuyển động mượt mà mượt mà cho tất cả thay đổi */
+    transition: all 0.3s ease; 
+}
+
+/* Hiệu ứng kích hoạt khi hover vào Card */
+.product-card:hover {
+    transform: translateY(-8px); /* Bay lên trên đúng 8px */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Tăng mạnh box-shadow */
+    border-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   EFFECT 3: IMAGE ZOOM (Bóng bẩy hiệu ứng zoom ảnh gọn gàng)
+   ========================================================================== */
+.img-container {
+    width: 100%;
+    height: 200px;
+    background-color: #f8fafc;
+    /* Bí thuật cốt lõi: Ẩn phần thừa của ảnh khi phình to ra */
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Tạo transition mượt mà riêng cho hiệu ứng phóng to ảnh */
+    transition: transform 0.3s ease;
+}
+
+/* Khi di chuột vào CARD, tấm ảnh bên trong CON CONTAINER sẽ tự động phóng to */
+.product-card:hover .img-container img {
+    transform: scale(1.1); /* Phóng to lên đúng 110% kích thước ban đầu */
+}
+
+/* STYLE CHI TIẾT PHẦN TEXT TRONG CARD */
+.card-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ef4444;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   EFFECT 2: BUTTON HOVER EFFECT (Biến đổi màu sắc + scale nhẹ)
+   ========================================================================== */
+.btn-buy {
+    width: 100%;
+    background-color: #1e293b; /* Nền tối mặc định */
+    color: #ffffff;            /* Chữ trắng mặc định */
+    border: none;
+    padding: 12px 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: auto; /* Ép nút luôn nằm dưới đáy card */
+    /* Chuyển động mượt mà cho biến đổi màu sắc và kích thước */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào nút Mua Ngay */
+.btn-buy:hover {
+    background-color: #3b82f6; /* Đổi mượt mà sang nền xanh dương */
+    color: #ffffff;            /* Giữ chữ trắng */
+    transform: scale(1.05);    /* Phóng to nhẹ nút bấm lên 1.05 lần */
+}
+
+/* ==========================================================================
+   EFFECT 5: FADE-IN KHI SCROLL (Hoạt ảnh CSS xuất hiện mượt mà)
+   ========================================================================== */
+.fade-in-element {
+    /* Gán hoạt ảnh chạy ngay khi phần tử vừa load / xuất hiện trên giao diện */
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;                /* Ban đầu ẩn hoàn toàn */
+        transform: translateY(20px); /* Bị đẩy lùi xuống dưới 20px */
+    }
+    to {
+        opacity: 1;                /* Hiện rõ ràng 100% */
+        transform: translateY(0);    /* Quay trở về vị trí tự nhiên ban đầu */
+    }
+}
