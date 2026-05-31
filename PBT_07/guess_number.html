@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game: Đoán Số Bí Ẩn</title>
+    <style>
+        /* Giao diện cơ bản để màn hình browser nhìn gọn gàng và chuyên nghiệp */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #1e293b;
+        }
+        .game-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 { color: #4f46e5; font-size: 1.8rem; margin-bottom: 10px; }
+        p { color: #64748b; font-size: 0.95rem; line-height: 1.5; }
+        button {
+            background-color: #4f46e5;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+        }
+        button:hover { background-color: #4338ca; }
+    </style>
+</head>
+<body>
+
+    <div class="game-card">
+        <h1>🔢 Trò Chơi Đoán Số</h1>
+        <p>Máy tính đã tự động chọn ngẫu nhiên một con số bí ẩn nằm trong khoảng từ <b>1 đến 100</b>.</p>
+        <p>Bạn có tối đa <b>7 lượt đoán</b> để tìm ra câu trả lời chính xác. Bấm nút dưới đây để bắt đầu cuộc chơi!</p>
+        
+        <button onclick="startGame()">Bắt đầu chơi</button>
+    </div>
+
+    <script src="guess.js"></script>
+</body>
+</html>
