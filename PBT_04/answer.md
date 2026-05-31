@@ -97,4 +97,73 @@ Sau khi Thuận nhấn Copy khối mã bên trên và dán vào file thành côn
 # ảnh minh chứng 3
 ![alt text](screenshots/3.png)
 
+# PHẦN C 
 
+## CÂU C1 
+
+### 1. Navigation bar ngang (logo + menu + buttons)
+* **Lựa chọn:** Flexbox
+* **Giải thích:** Thanh điều hướng là bố cục hiển thị theo 1 chiều (hàng ngang). Flexbox mạnh nhất ở khoản phân bổ không gian 1 chiều, giúp căn giữa các phần tử theo chiều dọc (align-items: center) và đẩy các khối ra hai đầu (justify-content: space-between) cực kỳ dễ dàng.
+
+### 2. Lưới ảnh Instagram (3 cột đều nhau, số ảnh không biết trước)
+* **Lựa chọn:** Grid
+* **Giải thích:** Đây là bố cục dạng lưới 2 chiều (hàng và cột) đồng đều tăm tắp. Sử dụng Grid với thuộc tính `grid-template-columns: repeat(3, 1fr);` sẽ giúp các hình ảnh tự động lấp đầy vào lưới theo đúng tỷ lệ 3 cột mà không cần tính toán phần trăm lề phức tạp như Flexbox.
+
+### 3. Layout blog: main content + sidebar
+* **Lựa chọn:** Grid
+* **Giải thích:** Với bộ khung lớn tổng thể của cả trang web (Page Layout) chia thành các vùng cố định rõ rệt (Cột nội dung chính chiếm phần lớn không gian, cột sidebar cố định 250px hoặc 300px), CSS Grid là lựa chọn tối ưu nhất để quản lý cấu trúc vĩ mô bền vững, không sợ bị xê dịch khi nội dung thay đổi.
+
+### 4. Footer với 4 cột thông tin (Về chúng tôi, Liên kết, Hỗ trợ, Liên hệ)
+* **Lựa chọn:** Flexbox
+* **Giải thích:** Mặc dù trông giống lưới nhưng thực chất Footer chỉ cần các cột sắp xếp nối đuôi nhau trên 1 chiều ngang và tự động rớt dòng hoặc co giãn linh hoạt tùy theo kích thước màn hình thiết bị (flex-wrap: wrap), không cần ép các hàng bên dưới phải khít ô tuyệt đối với hàng trên như Grid.
+
+### 5. Card sản phẩm (ảnh trên, text giữa, nút dưới — nút luôn dính đáy)
+* **Lựa chọn:** Flexbox
+* **Giải thích:** Trục bố cục bên trong card chạy theo 1 chiều dọc (thành hàng dọc - column). Khi đặt `display: flex; flex-direction: column;` cho card, ta có thể áp dụng thuộc tính `margin-top: auto` cho nút bấm, ép nó luôn bám chặt vào đáy card dù đoạn text miêu tả ở giữa có dài ngắn không đều.
+
+---
+
+## CÂU C2 
+
+### 1. Lỗi 1: Cards không đều chiều cao — nút "Mua" bị nhảy lên/xuống
+* **Nguyên nhân:** Do thuộc tính `display: flex` mặc định của khối cha `.card-container` chỉ làm cho các `.card` có chiều cao bằng nhau, nhưng bản thân bên trong mỗi `.card` chưa được kích hoạt Flexbox theo chiều dọc. Vì thế, nếu tiêu đề `h3` của card nào dài 2 dòng, nó sẽ đẩy nút bấm xuống dưới; card nào tiêu đề ngắn, nút bấm sẽ bị giật lên cao.
+* **Code sửa lại:**
+.card-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+}
+.card { 
+    width: 30%; 
+    margin: 1.5%; 
+    display: flex;
+    flex-direction: column; 
+}
+.card img { width: 100%; }
+.card h3 { font-size: 18px; }
+.card .btn { 
+    padding: 10px; 
+    margin-top: auto; 
+}
+
+### 2. Lỗi 2: Muốn items nằm giữa cả ngang lẫn dọc trong container 100vh, nhưng item vẫn dính góc trái trên
+* **Nguyên nhân:** Khối cha `.hero` tuy đã khai báo `display: flex` để kích hoạt Flexbox, nhưng lại thiếu hai thuộc tính căn chỉnh cốt lõi là `justify-content` (căn giữa theo trục ngang) và `align-items` (căn giữa theo trục dọc). Thiếu chúng, các phần tử con sẽ bị dồn về góc trái trên mặc định theo luồng văn bản.
+* **Code sửa lại:**
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-content {
+    text-align: center;
+}
+
+### 3. Lỗi 3: Sidebar bị co lại khi content quá dài
+* **Nguyên nhân:** Trong Flexbox, các phần tử con mặc định đều có thuộc tính `flex-shrink: 1`. Điều này có nghĩa là khi vùng không gian chứa nội dung chính (`.content`) quá dài và phình to ra, trình duyệt sẽ tự động bóp nghẹt chiều rộng của thằng bên cạnh (`.sidebar`) nhỏ hơn mức 250px quy định ban đầu để nhường chỗ.
+* **Code sửa lại:**
+.layout { display: flex; }
+.sidebar { 
+    width: 250px; 
+    flex-shrink: 0; 
+}
+.content { flex: 1; }
