@@ -1,0 +1,36 @@
+/* Styling cơ bản để phân biệt các khối */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+.container {
+    width: 960px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    border: 3px dashed red; /* Viền đỏ nét đứt thể hiện khung chứa 960px */
+}
+
+/* Khôi phục lại mã nguồn bị vỡ ban đầu của đề bài */
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #ffeaa7; /* Màu vàng */
+    float: left;
+}
+
+.content {
+    width: 660px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    background-color: #81ecec; /* Màu xanh */
+    float: left;
+}
+
+/* Lệnh Clearfix chống sập khung chứa khi dùng thuộc tính float */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}

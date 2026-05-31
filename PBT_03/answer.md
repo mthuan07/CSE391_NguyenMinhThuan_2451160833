@@ -363,3 +363,74 @@ Dựa trên các yêu cầu kỹ thuật của bài toán layout 3 cột:
 * **Giải thích:** Trình duyệt chỉ áp dụng quy tắc *"Cái nào viết sau sẽ ghi đè cái viết trước"* (Source Order) khi và chỉ khi hai bộ chọn đó có **điểm số Specificity bằng nhau**. Trong trường hợp này, vì điểm số của Rule 10 **(1, 2, 1)** lớn hơn tất cả các quy tắc còn lại một cách độc lập, nên dù bạn có đảo nó lên đầu file CSS hay nằm ở giữa file, nó vẫn sẽ chiến thắng các quy tắc có điểm thấp hơn.
 ## Ảnh chụp
 ![alt text](screenshots/1.png)
+## Phần C
+## Câu C1
+
+## 1. Chiều rộng thực tế của Sidebar và Content (content-box)
+
+Vì các phần tử đang sử dụng thuộc tính `box-sizing: content-box` (mặc định), chiều rộng thực tế hiển thị trên trình duyệt sẽ bằng: `width` + `padding-left/right` + `border-left/right`.
+
+* **Chiều rộng thực tế của `.sidebar`:**
+  $$\text{300px (width)} + \text{20px (padding trái)} + \text{20px (padding phải)} + \text{1px (border trái)} + \text{1px (border phải)} = 342\text{px}$$
+* **Chiều rộng thực tế của `.content`:**
+  $$\text{660px (width)} + \text{30px (padding trái)} + \text{30px (padding phải)} + \text{1px (border trái)} + \text{1px (border phải)} = 722\text{px}$$
+
+## 2. Giải thích tại sao layout bị vỡ
+
+Để hai khối `.sidebar` và `.content` có thể nằm cạnh nhau trên cùng một dòng bằng thuộc tính `float: left`, tổng chiều rộng thực tế của chúng phải **nhỏ hơn hoặc bằng** chiều rộng của khối cha `.container` ($960\text{px}$).
+
+Tuy nhiên, dựa vào kết quả tính toán ở trên:
+$$\text{Tổng chiều rộng thực tế} = \text{Sidebar (342px)} + \text{Content (722px)} = 1064\text{px}$$
+
+Vì $1064\text{px} > 960\text{px}$ (vượt quá giới hạn khung chứa tận $104\text{px}$), không gian dòng đầu tiên không còn đủ chỗ trống. Do đó, trình duyệt buộc phải đẩy khối `.content` rớt xuống một dòng mới, gây ra lỗi vỡ layout.
+
+---
+
+## 3. Hai giải pháp khắc phục khác nhau
+
+### Cách 1: Sử dụng `box-sizing: border-box` (Khuyên dùng, hiện đại)
+Chúng ta giữ nguyên các thông số thiết kế ban đầu nhưng kích hoạt thuộc tính `box-sizing: border-box`. Trình duyệt sẽ tự động bóp nhỏ vùng nội dung lại để tổng chiều rộng của sidebar đúng bằng $300\text{px}$ và content đúng bằng $660\text{px}$.
+* Phép toán: $\text{300px} + \text{660px} = 960\text{px}$ (Vừa khít hoàn hảo).
+
+### Cách 2: Không dùng `border-box` (Sử dụng toán học trừ lùi cho `content-box`)
+Chúng ta phải tự tay lấy số `width` mong muốn trừ đi tổng `padding` và `border` của chính khối đó để tìm ra con số `width` khai báo mới:
+* **Khai báo lại Width mới cho `.sidebar`:** $$\text{300px} - \text{40px (padding)} - \text{2px (border)} = 258\text{px}$$
+* **Khai báo lại Width mới cho `.content`:** $$\text{660px} - \text{60px (padding)} - \text{2px (border)} = 598\text{px}$$
+
+# Câu C2 
+
+## 1. Kết quả hiển thị của các phần tử (Không chạy code)
+
+* **"Sản phẩm A" (`<h2>`):** `font-size` = **20px** | `color` = **green**
+* **"Mô tả sản phẩm" (`<p>` trong #featured):** `color` = **#333** (hoặc gọi là xám đậm)
+* **"Sản phẩm B" (`<h2>`):** `font-size` = **20px** | `color` = **blue**
+* **"Mô tả sản phẩm B" (`<p>`):** `color` = **green**
+
+---
+
+## 2. Giải thích chi tiết quá trình Cascade + Inheritance cho mỗi câu
+
+### Câu A: Thẻ <h2> "Sản phẩm A"
+* **Về `font-size`:** Thẻ này chịu ảnh hưởng bởi selector `.card .title` với điểm Specificity là `(0, 2, 0)`. Không có selector nào khác target vào font-size của nó, nên nó nhận giá trị **20px**.
+* **Về `color`:** Thẻ này có 3 selector cùng tranh chấp màu sắc:
+  1. `#featured .title` $\rightarrow$ Score: `(1, 1, 0)` (Chỉ định màu `red`)
+  2. `.highlight` $\rightarrow$ Score: `(0, 1, 0)` (Chỉ định màu `green !important`)
+  * **Quá trình Cascade:** Thông thường, ID selector (`#featured .title`) sẽ đánh bại Class selector. Tuy nhiên, do `.highlight` sử dụng quân bài tẩy **`!important`**, nó phá vỡ mọi quy tắc tính điểm thông thường và giành chiến thắng tuyệt đối. Do đó, chữ có **màu xanh lá (green)**.
+
+### Câu B: Thẻ <p> "Mô tả sản phẩm" (trong card featured)
+* **Về `color`:** Thẻ này target bởi selector `.card p { color: inherit; }`.
+  * **Quá trình Inheritance:** Từ khóa `inherit` ép phần tử `<p>` này phải lấy chính xác màu của khối cha trực tiếp chứa nó, đó là `<div class="card" id="featured">`. 
+  * Tiếp tục xét khối cha `.card`: Khối này được định nghĩa `color: blue;`. Tuy nhiên, vì nó có ID là `#featured`, trình duyệt xem xét xem có lệnh nào ghi đè màu của card không $\rightarrow$ Không có lệnh nào đổi màu của riêng `.card`. Do đó, khối cha có màu xanh (blue).
+  * Thẻ `<p>` kế thừa trực tiếp màu từ cha nên nó hiển thị **màu xanh (blue)**. 
+  *(Sửa đổi tư duy: Do thẻ cha `.card` có thuộc tính `color: blue`, lệnh `inherit` đưa màu xanh xuống thẻ p).*
+
+### Câu C: Thẻ <h2> "Sản phẩm B"
+* **Về `font-size`:** Giống như sản phẩm A, nó chịu ảnh hưởng bởi selector `.card .title` có điểm cao hơn độ kế thừa từ `.container` nên nhận giá trị **20px**.
+* **Về `color`:** Thẻ này chịu ảnh hưởng bởi selector `.card` (định nghĩa cho khối cha, thẻ `<h2>` tự động kế thừa màu chữ từ cha nếu không có lệnh đè) và selector `.card .title` (nhắm trực tiếp vào chính nó nhưng ở sản phẩm B không có ID hay highlight).
+  * Xét các selector nhắm vào nó: Chỉ có `.card .title` không quy định màu. Do đó, nó kế thừa thuộc tính `color: blue` từ thẻ cha `.card` truyền xuống. Kết quả là **màu xanh dương (blue)**.
+
+### Câu D: Thẻ <p> "Mô tả sản phẩm B" (p.highlight)
+* **Về `color`:** Thẻ này có 2 quy tắc tác động:
+  1. `.card p { color: inherit; }` $\rightarrow$ Score: `(0, 1, 1)` (Ép kế thừa màu blue từ cha).
+  2. `.highlight { color: green !important; }` $\rightarrow$ Score: `(0, 1, 0)`.
+  * **Quá trình Cascade:** Mặc dù điểm số của `.card p` cao hơn `.highlight`, từ khóa **`!important`** ở thuộc tính màu xanh lá một lần nữa giành quyền ưu tiên tối cao, đè bẹp lệnh ép kế thừa `inherit`. Do đó, chữ hiển thị **màu xanh lá (green)**.
