@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap E-Commerce Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* CSS tùy chỉnh tối thiểu cho chiều cao ảnh theo quy định */
+        .carousel-item img {
+            height: 60vh;
+            object-fit: cover;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-info" href="#">BOOTSTRAP.SHOP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#footer">Liên hệ</a></li>
+                </ul>
+                <form class="d-flex me-3" role="search">
+                    <input class="form-control me-2 rounded-pill" type="search" placeholder="Tìm sản phẩm...">
+                    <button class="btn btn-outline-info rounded-pill" type="submit">Tìm</button>
+                </form>
+                <button class="btn btn-info position-relative rounded-circle p-2">
+                    🛒
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="heroCarousel" class="carousel slide carousel-fade shadow-sm mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-4">
+                    <h2 class="fw-bold text-info">Đại Tiệc Công Nghệ Mới</h2>
+                    <p>Khám phá thế giới phụ kiện thông minh đỉnh cao ưu đãi tuần này.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-4">
+                    <h2 class="fw-bold text-warning">Thời Trang Điển Hình 2026</h2>
+                    <p>Nâng tầm phong cách cá nhân với những bộ sưu tập xu hướng mới nhất.</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1200" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-4">
+                    <h2 class="fw-bold text-danger">Xả Kho Giảm Cực Sâu</h2>
+                    <p>Cơ hội duy nhất sở hữu các siêu phẩm giới hạn với mức giá sập sàn.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <div class="container my-5" id="products">
+        <h3 class="fw-bold text-dark border-start border-4 border-info ps-3 mb-4">Sản Phẩm Đang Giảm Giá</h3>
+        
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 position-relative shadow-sm border-0 transition">
+                    <span class="position-absolute top-0 start-0 m-2 badge bg-danger fs-6 shadow">SALE</span>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" class="card-img-top" alt="Sản phẩm 1">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-truncate">Giày Sneaker Sport X</h5>
+                        <p class="card-text text-muted flex-grow-1 small">Thiết kế êm chân, trợ lực hoàn hảo cho mọi hoạt động chạy bộ thể thao.</p>
+                        <p class="text-danger fw-bold fs-5 mb-3">1.250.000đ</p>
+                        <button class="btn btn-dark w-100 rounded-pill" data-bs-toggle="modal" data-bs-target="#quickViewModal">Xem nhanh</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 position-relative shadow-sm border-0">
+                    <span class="position-absolute top-0 start-0 m-2 badge bg-danger fs-6 shadow">SALE</span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" class="card-img-top" alt="Sản phẩm 2">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-truncate">Đồng Hồ Classic Premium</h5>
+                        <p class="card-text text-muted flex-grow-1 small">Chống nước vượt trội, chất liệu thép không gỉ mạ vàng sang trọng.</p>
+                        <p class="text-danger fw-bold fs-5 mb-3">3.400.000đ</p>
+                        <button class="btn btn-dark w-100 rounded-pill" data-bs-toggle="modal" data-bs-target="#quickViewModal">Xem nhanh</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 position-relative shadow-sm border-0">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" class="card-img-top" alt="Sản phẩm 3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-truncate">Tai Nghe Wireless Studio</h5>
+                        <p class="card-text text-muted flex-grow-1 small">Âm thanh Hi-Res sống động, chống ồn chủ động ANC thế hệ mới.</p>
+                        <p class="text-dark fw-bold fs-5 mb-3">2.150.000đ</p>
+                        <button class="btn btn-dark w-100 rounded-pill" data-bs-toggle="modal" data-bs-target="#quickViewModal">Xem nhanh</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 position-relative shadow-sm border-0">
+                    <span class="position-absolute top-0 start-0 m-2 badge bg-danger fs-6 shadow">SALE</span>
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400" class="card-img-top" alt="Sản phẩm 4">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-truncate">Kính Râm Aviator Phiên Bản Mới</h5>
+                        <p class="card-text text-muted flex-grow-1 small">Mắt kính chống tia UV400 bảo vệ mắt tối đa dưới ánh nắng mặt trời gắt.</p>
+                        <p class="text-danger fw-bold fs-5 mb-3">490.000đ</p>
+                        <button class="btn btn-dark w-100 rounded-pill" data-bs-toggle="modal" data-bs-target="#quickViewModal">Xem nhanh</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold">Thông tin chi tiết sản phẩm</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-shadow="none" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12 col-md-5">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" class="img-fluid rounded shadow-sm" alt="Chi tiết">
+                        </div>
+                        <div class="col-12 col-md-7 d-flex flex-column justify-content-center">
+                            <h4 class="fw-bold text-dark">Siêu Phẩm Cao Cấp Hàng Hiệu</h4>
+                            <span class="badge bg-danger align-self-start mb-2 px-3 py-2">GIÁ SỐC</span>
+                            <p class="text-muted mt-2">Sản phẩm chính hãng đầy đủ giấy tờ kiểm định. Bảo hành 1 đổi 1 trong vòng 30 ngày nếu phát hiện lỗi từ nhà sản xuất.</p>
+                            <h3 class="text-danger fw-bold my-3">1.250.000đ</h3>
+                            <button class="btn btn-info w-100 rounded-pill fw-bold" data-bs-dismiss="modal">Thêm Vào Giỏ Hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light pt-5 pb-4 mt-5" id="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <h5 class="text-info fw-bold mb-3">Về Chúng Tôi</h5>
+                    <p class="small text-secondary">Hệ thống phân phối bán lẻ hàng chính hãng cao cấp uy tín hàng đầu Việt Nam.</p>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <h5 class="text-info fw-bold mb-3">Chính Sách</h5>
+                    <ul class="list-unstyled small text-secondary d-flex flex-column gap-2">
+                        <li><a href="#" class="text-secondary text-decoration-none">Chính sách bảo mật</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none">Điều khoản dịch vụ</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <h5 class="text-info fw-bold mb-3">Hỗ Trợ</h5>
+                    <ul class="list-unstyled small text-secondary d-flex flex-column gap-2">
+                        <li><a href="#" class="text-secondary text-decoration-none">Trung tâm trợ giúp</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none">Hành trình đơn hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <h5 class="text-info fw-bold mb-3">Liên Hệ</h5>
+                    <p class="small text-secondary mb-1"> Địa chỉ: Toà nhà Đại học Thủy Lợi, Hà Nội</p>
+                    <p class="small text-secondary mb-1"> Hotline: 1900 xxxx</p>
+                    <p class="small text-secondary">✉️ Email: support@bootstrap.dev</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="text-center text-secondary small">
+                <p>&copy; 2026 BOOTSTRAP.SHOP. Thiết kế 100% bằng hệ thống tiện ích Bootstrap Framework.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

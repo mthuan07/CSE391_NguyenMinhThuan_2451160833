@@ -56,3 +56,4 @@
 * `.container`: Là khung chứa có độ rộng cố định (Fixed width) theo từng mốc màn hình. Trình duyệt sẽ tự động chừa khoảng trống đều hai bên lề để nội dung gom vào giữa trang, kích thước tối đa sẽ bị giới hạn (ví dụ: tối đa 1140px trên màn hình lớn).
 * `.container-fluid`: Là khung chứa có độ rộng full-width **luôn luôn chiếm 100% chiều rộng** của màn hình ở mọi kích thước thiết bị, kéo tràn lề từ trái qua phải mà không bị giới hạn cố định.
 * `.container-md`: Là khung chứa có tính chất lai ghép: Ở kích thước màn hình nhỏ dưới 768px, nó sẽ hành xử giống `.container-fluid` (chiếm trọn 100% chiều rộng). Tuy nhiên, kể từ mốc màn hình `md` (768px) trở lên, nó sẽ tự động kích hoạt tính chất cố định, gom nội dung vào giữa trang giống hệt `.container` thông thường.
+
