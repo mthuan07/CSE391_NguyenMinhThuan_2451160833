@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="todo-container">
+        <header class="todo-header">
+            <h1>todos</h1>
+        </header>
+
+        <main class="todo-main">
+            <form id="todoForm">
+                <input type="text" id="todoInput" placeholder="Hôm nay bạn cần làm gì?" autocomplete="off">
+            </form>
+
+            <ul id="todoList"></ul>
+
+            <footer id="todoFooter" class="todo-footer hidden">
+                <span id="todoCount" class="todo-count">0 items left</span>
+                
+                <div class="todo-filters">
+                    <button data-filter="all" class="filter-btn active">All</button>
+                    <button data-filter="active" class="filter-btn">Active</button>
+                    <button data-filter="completed" class="filter-btn">Completed</button>
+                </div>
+
+                <button id="clearCompletedBtn" class="clear-completed-btn">Clear completed</button>
+            </footer>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

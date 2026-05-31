@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Navigation & Accessibility App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="instructions-banner" role="note" aria-label="Hướng dẫn phím tắt">
+        <h2>⌨️ Hệ thống Phím tắt Ứng dụng:</h2>
+        <ul>
+            <li><strong>Mở Tìm Kiếm:</strong> Nhấn <kbd>Ctrl</kbd> + <kbd>K</kbd></li>
+            <li><strong>Điều hướng Gallery:</strong> Nhấn Mũi tên <kbd>←</kbd> <kbd>→</kbd> hoặc phím số từ <kbd>1</kbd> - <kbd>5</kbd></li>
+            <li><strong>Trình chiếu Slideshow:</strong> Nhấn phím Cách <kbd>Space</kbd> để Bật / Tắt tự động</li>
+            <li><strong>Thoát nhanh Overlay/Modal:</strong> Nhấn phím <kbd>Esc</kbd></li>
+        </ul>
+    </div>
+
+    <main class="gallery-section">
+        <h1 class="section-title">Bộ Sưu Tập Công Nghệ</h1>
+        
+        <div class="gallery-display" aria-live="polite" id="galleryViewer">
+            <img id="mainImage" src="" alt="Hình ảnh hiển thị chính">
+            <div id="slideshowStatus" class="slideshow-badge hidden">▶ PLAYING</div>
+            <div id="imageCaption" class="image-caption"></div>
+        </div>
+
+        <div class="thumbnail-container" id="thumbnailContainer" role="listbox" aria-label="Danh sách ảnh thu nhỏ">
+            </div>
+    </main>
+
+    <div id="commandPalette" class="palette-overlay hidden" role="dialog" aria-modal="true" aria-label="Hộp lệnh tìm kiếm">
+        <div class="palette-box">
+            <div class="palette-header">
+                <input type="text" id="paletteInput" placeholder="Gõ từ khóa lệnh (ví dụ: dark, play, pause, next...)" aria-label="Nhập lệnh tìm kiếm" autocomplete="off">
+                <span class="esc-hint">ESC để đóng</span>
+            </div>
+            <ul id="commandList" class="command-list" role="listbox" aria-label="Kết quả tìm kiếm lệnh"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
