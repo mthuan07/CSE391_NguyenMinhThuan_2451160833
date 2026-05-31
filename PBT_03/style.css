@@ -1,0 +1,162 @@
+/* ==========================================
+   1. RESET & TYPOGRAPHY CORNER (Yêu cầu 1 & 2)
+   ========================================== */
+/* Dòng đầu tiên CSS: Reset Box Model toàn cục */
+* { 
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+/* Định dạng chung cho toàn bộ trang web */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Màu nền xám nhạt dịu mắt */
+    color: #333333;            /* Màu chữ xám đậm dễ đọc */
+    line-height: 1.6;          /* Khoảng cách dòng chuẩn tỷ lệ vàng */
+    padding-bottom: 40px;
+}
+
+/* ==========================================
+   2. HEADER & NAVIGATION STYLING (Yêu cầu 3 & 4)
+   ========================================== */
+header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Background gradient */
+    color: #ffffff; /* Chữ màu trắng */
+    padding: 30px 20px; /* Padding ít nhất 20px */
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 15px;
+    font-size: 2.2rem;
+}
+
+/* Định dạng danh sách menu điều hướng */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Navigation Links: Trạng thái mặc định */
+nav ul li a {
+    text-decoration: none; /* Không gạch chân */
+    color: #e0e0e0;        /* Màu xám nhạt cụ thể */
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+/* Trạng thái Hover: Di chuột vào đổi màu + gạch chân */
+nav ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Trạng thái Active: Kiểu dáng khác biệt nổi bật */
+nav ul li a.active {
+    color: #ffeb3b; /* Màu vàng nổi bật trên nền xanh */
+    border-bottom: 2px solid #ffeb3b;
+}
+
+/* ==========================================
+   3. MAIN CONTENT LAYOUT
+   ========================================== */
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: #ffffff;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+section h2 {
+    color: #1e3c72;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f4f7f6;
+    padding-bottom: 5px;
+}
+
+figure {
+    margin-top: 15px;
+    text-align: center;
+}
+
+figure img {
+    border-radius: 50%; /* Bo tròn ảnh đại diện cho đẹp */
+    border: 3px solid #2a5298;
+}
+
+figcaption {
+    font-style: italic;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* ==========================================
+   4. TABLE STYLING - KỸ NĂNG (Yêu cầu 5)
+   ========================================== */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Gộp viền bảng lại làm một */
+    margin-top: 15px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+}
+
+/* Header row: Background đậm, text trắng */
+table create thead tr {
+    background-color: #1e3c72;
+    color: #ffffff;
+}
+
+/* Zebra striping: Đổi màu background cho các hàng chẵn */
+table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Hover row: Đổi background khi di chuột qua hàng */
+table tbody tr:hover {
+    background-color: #e2eafc;
+    cursor: pointer;
+}
+
+/* Định dạng chân bảng */
+table tfoot tr {
+    background-color: #eaeaea;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ==========================================
+   5. ASIDE & FOOTER STYLING (Yêu cầu 6)
+   ========================================== */
+#contact {
+    background: #eef2f7;
+    max-width: 800px;
+    margin: 0 auto 25px auto;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #2a5298;
+}
+
+footer {
+    background-color: #222222; /* Background đậm */
+    color: #bbbbbb;            /* Text nhạt */
+    text-align: center;        /* Canh giữa chữ */
+    padding: 20px 0;
+    position: width 100%;
+    margin-top: 40px;
+}

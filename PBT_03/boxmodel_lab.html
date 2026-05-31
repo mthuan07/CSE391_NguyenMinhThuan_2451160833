@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực hành CSS Box Model</title>
+    <link rel="stylesheet" href="boxmodel.css">
+</head>
+<body>
+
+    <h1>PHẦN 1: CHỨNG MINH CONTENT-BOX VS BORDER-BOX</h1>
+    <div class="demo-container">
+        <div class="box box-content">Hộp 1: content-box</div>
+        <div class="box box-border">Hộp 2: border-box</div>
+    </div>
+
+    <hr>
+
+    <h1>PHẦN 2: LAYOUT 3 CỘT (CONTAINER 1000PX)</h1>
+    <div class="main-container use-border-box">
+        <aside class="col-left">Cột trái (Sidebar)<br>250px, padding 15px</aside>
+        <main class="col-center">Cột giữa (Content)<br>500px, padding 20px</main>
+        <aside class="col-right">Cột phải (Ads)<br>250px, padding 15px</aside>
+    </div>
+
+</body>
+</html>

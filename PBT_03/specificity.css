@@ -1,0 +1,29 @@
+/* Rule 1 | Score: (0, 0, 1) */
+p { color: grey; }
+
+/* Rule 2 | Score: (0, 0, 2) */
+body p { color: silver; }
+
+/* Rule 3 | Score: (0, 1, 0) */
+.text { color: blue; }
+
+/* Rule 4 | Score: (0, 1, 1) */
+p.text { color: green; }
+
+/* Rule 5 | Score: (0, 2, 0) */
+.text.highlight { color: purple; }
+
+/* Rule 6 | Score: (0, 2, 1) */
+p.text.highlight { color: brown; }
+
+/* Rule 7 | Score: (1, 0, 0) */
+#demo { color: gold; }
+
+/* Rule 8 | Score: (1, 0, 1) */
+p#demo { color: pink; }
+
+/* Rule 9 | Score: (1, 1, 0) */
+#demo.text { color: cyan; }
+
+/* Rule 10 | Score: (1, 2, 1) */
+p#demo.text.highlight { color: red; }

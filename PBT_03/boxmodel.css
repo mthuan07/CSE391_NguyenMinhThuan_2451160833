@@ -1,0 +1,87 @@
+/* Styling cơ bản cho giao diện dễ nhìn */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 20px 0;
+}
+
+hr {
+    margin: 40px 0;
+    border: 1px dashed #ccc;
+}
+
+/* ==========================================
+   MÃ CSS PHẦN 1: CHỨNG MINH BOX-SIZING
+   ========================================== */
+.demo-container {
+    display: flex;
+    gap: 30px;
+}
+
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid #2c3e50;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Hộp 1: Giữ nguyên mặc định content-box */
+.box-content {
+    box-sizing: content-box;
+}
+
+/* Hộp 2: Chuyển sang border-box */
+.box-border {
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   MÃ CSS PHẦN 2: LAYOUT 3 CỘT
+   ========================================== */
+.main-container {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex; /* Kích hoạt Flexbox để các cột nằm cạnh nhau */
+    background-color: #ffffff;
+    border: 2px solid #7f8c8d;
+}
+
+/* Các thuộc tính chung cho 3 cột */
+.col-left, .col-center, .col-right {
+    color: #333;
+    font-weight: bold;
+}
+
+.col-left {
+    width: 250px;
+    padding: 15px;
+    background-color: #eaedd0; /* Vàng nhạt */
+}
+
+.col-center {
+    width: 500px;
+    padding: 20px;
+    background-color: #d0edd6; /* Xanh lá nhạt */
+}
+
+.col-right {
+    width: 250px;
+    padding: 15px;
+    background-color: #d0e7ed; /* Xanh dương nhạt */
+}
+
+/* ĐIỀU KIỆN QUYẾT ĐỊNH: Khi bật class này, tổng 3 cột mới vừa khít 1000px */
+.use-border-box .col-left,
+.use-border-box .col-center,
+.use-border-box .col-right {
+    box-sizing: border-box;
+}
