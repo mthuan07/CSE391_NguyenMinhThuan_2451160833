@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailwindCSS E-Commerce Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Cấu hình Tailwind hỗ trợ cơ chế chuyển giao diện Dark Mode bằng class thủ công
+        tailwind.config = {
+            darkMode: 'class',
+        }
+        
+        // Hàm JavaScript hỗ trợ Thuận click nút bấm test nhanh tính năng Dark Mode trên giao diện
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
+
+    <button onclick="toggleDarkMode()" class="fixed bottom-6 right-6 z-50 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all focus:outline-none font-bold">
+        🌓 Đổi Giao Diện
+    </button>
+
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur shadow-md transition-colors dark:bg-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 text-xl font-extrabold text-indigo-600 dark:text-indigo-400">
+                    TAILWIND.SHOP
+                </div>
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="#" class="text-indigo-600 dark:text-indigo-400">Trang chủ</a>
+                    <a href="#products" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Sản phẩm</a>
+                    <a href="#footer" class="text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Liên hệ</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 bg-slate-100 rounded-full text-slate-600 dark:bg-slate-700 dark:text-slate-300">
+                        🛒
+                        <span class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white">4</span>
+                    </button>
+                    <button class="md:hidden text-2xl focus:outline-none">☰</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative bg-slate-900 overflow-hidden py-24 md:py-32">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200" alt="Hero Background" class="absolute inset-0 w-100 h-100 object-cover opacity-20">
+        <div class="relative max-w-4xl mx-auto text-center px-4">
+            <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                KỶ NGUYÊN MUA SẮM <span class="text-indigo-400">UTILITY-FIRST</span>
+            </h1>
+            <p class="mt-6 text-base md:text-xl text-slate-300 max-w-2xl mx-auto">
+                Trải nghiệm tốc độ tải trang chóng mặt cùng hệ thống sản phẩm công nghệ tối ưu hóa giao diện hoàn hảo.
+            </p>
+            <div class="mt-10">
+                <a href="#products" class="inline-block bg-indigo-600 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:bg-indigo-500 hover:-translate-y-0.5 transition-all duration-200">
+                    Sắm Ngay Hôm Nay
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="products">
+        <h2 class="text-2xl font-black text-slate-900 border-l-4 border-indigo-600 pl-3 mb-8 dark:text-white">
+            Sản Phẩm Công Nghệ Mới
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="group bg-white rounded-lg shadow-md border border-slate-200/60 overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300 dark:bg-slate-800 dark:border-slate-700/50">
+                <div class="h-48 overflow-hidden bg-slate-100 dark:bg-slate-700 relative">
+                    <span class="absolute top-2 left-2 z-10 bg-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-md shadow">SALE</span>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="Sản phẩm 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-bold text-slate-800 text-lg truncate dark:text-slate-100">Sneaker Nike Air Max</h3>
+                    <p class="text-sm text-slate-500 mt-1 flex-1 line-clamp-2 dark:text-slate-400">Phiên bản giày thể thao trợ lực, thoáng khí tối đa dành cho chạy bộ đường dài.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-rose-500 font-extrabold text-lg">1.490.000đ</span>
+                        <button class="bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-md hover:bg-indigo-600 transition-colors dark:bg-indigo-600 dark:hover:bg-indigo-500">Mua ngay</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-lg shadow-md border border-slate-200/60 overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300 dark:bg-slate-800 dark:border-slate-700/50">
+                <div class="h-48 overflow-hidden bg-slate-100 dark:bg-slate-700 relative">
+                    <span class="absolute top-2 left-2 z-10 bg-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-md shadow">SALE</span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Sản phẩm 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-bold text-slate-800 text-lg truncate dark:text-slate-100">Đồng Hồ Classic Gold</h3>
+                    <p class="text-sm text-slate-500 mt-1 flex-1 line-clamp-2 dark:text-slate-400">Mặt kính sapphire chống xước tuyệt đối, dây đeo kim loại mạ vàng cao cấp.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-rose-500 font-extrabold text-lg">2.850.000đ</span>
+                        <button class="bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-md hover:bg-indigo-600 transition-colors dark:bg-indigo-600 dark:hover:bg-indigo-500">Mua ngay</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-lg shadow-md border border-slate-200/60 overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300 dark:bg-slate-800 dark:border-slate-700/50">
+                <div class="h-48 overflow-hidden bg-slate-100 dark:bg-slate-700 relative">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" alt="Sản phẩm 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-bold text-slate-800 text-lg truncate dark:text-slate-100">Tai Nghe Studio Pro</h3>
+                    <p class="text-sm text-slate-500 mt-1 flex-1 line-clamp-2 dark:text-slate-400">Khử tiếng ồn chủ động thông minh, màng loa dynamic tái tạo âm thanh cực đại.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-slate-900 font-extrabold text-lg dark:text-white">3.100.000đ</span>
+                        <button class="bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-md hover:bg-indigo-600 transition-colors dark:bg-indigo-600 dark:hover:bg-indigo-500">Mua ngay</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-lg shadow-md border border-slate-200/60 overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300 dark:bg-slate-800 dark:border-slate-700/50">
+                <div class="h-48 overflow-hidden bg-slate-100 dark:bg-slate-700 relative">
+                    <span class="absolute top-2 left-2 z-10 bg-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-md shadow">SALE</span>
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400" alt="Sản phẩm 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-bold text-slate-800 text-lg truncate dark:text-slate-100">Kính Mát Phi Công Luxury</h3>
+                    <p class="text-sm text-slate-500 mt-1 flex-1 line-clamp-2 dark:text-slate-400">Tròng kính phân cực chống loá lóa bảo vệ võng mạc dưới tia tử ngoại mạnh.</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-rose-500 font-extrabold text-lg">550.000đ</span>
+                        <button class="bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-md hover:bg-indigo-600 transition-colors dark:bg-indigo-600 dark:hover:bg-indigo-500">Mua ngay</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-12 transition-colors dark:bg-slate-950" id="footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4 dark:text-indigo-400">Về Chúng Tôi</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Chuỗi hệ thống công nghệ bán lẻ đi đầu trong việc ứng dụng tiện ích tối ưu hóa trải nghiệm khách hàng.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4 dark:text-indigo-400">Chính Sách</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Điều khoản dịch vụ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Đổi trả 1-1 nhanh chóng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4 dark:text-indigo-400">Dịch Vụ Hỗ Trợ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Trung tâm bảo hành</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Theo dõi tiến độ đơn hàng</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Câu hỏi thường gặp FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4 dark:text-indigo-400">Thông Tin Liên Hệ</h4>
+                    <p class="text-sm">📍 Tòa nhà Công nghệ cao ĐH Thủy Lợi, Hà Nội</p>
+                    <p class="text-sm mt-2">📞 Hotline trực ban: 1800 xxxx</p>
+                    <p class="text-sm mt-2">✉️ Email liên hệ: cskh@tailwind.shop</p>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 my-8 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; 2026 TAILWIND.SHOP. Phát triển bằng phương pháp lập trình lớp tiện ích tiện lợi.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
