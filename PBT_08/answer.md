@@ -121,3 +121,89 @@ const res8 = [...nums].reverse();
 * `console.log(product.specs.ram);`        --> `16`
 * **Tại sao kết quả bằng 16 mà không phải bằng 8?** Đây chính là lỗi hiểm hóc gọi là **Shallow Copy (Sao chép nông)** trong JavaScript. Phép toán spread `{ ...product }` chỉ sao chép được một tầng bề nổi của các thuộc tính dạng thô (như `name`, `price`). Còn thuộc tính `specs` bên trong bản chất là một Object phức tạp chứa một cái "địa chỉ ô nhớ" trỏ đi chỗ khác. Khi spread, nó chỉ copy cái địa chỉ đó sang đối tượng `copy`. Kết quả là cả `product.specs` và `copy.specs` đều đang dắt tay nhau trỏ chung vào **duy nhất một ô nhớ chứa ram và storage** dưới tầng lõi. Do đó, khi Thuận sửa `copy.specs.ram = 16`, cấu trúc ruột của `product` gốc cũng sẽ bị thay đổi theo lập tức.
 
+# PHẦN C 
+
+## CÂU C1 — REFACTOR CODE (TỐI ƯU HÓA MẢNG VÀ HÀM MŨI TÊN)
+
+### 1. Đoạn code sau khi được Refactor hoàn chỉnh (Chỉ đúng 8 dòng):
+
+function processOrders(orders) {
+    return orders
+        .filter(({ status, total }) => status === "completed" && total > 100000)
+        .map(({ id, customer, total }) => ({
+            id, customer, total,
+            discount: total * 0.1,
+            finalTotal: total * 0.9
+        }))
+        .sort((a, b) => b.finalTotal - a.finalTotal);
+}
+
+### 2. Phân tích các kỹ thuật nâng cao đã sử dụng:
+* filter() kết hợp Destructuring: Thay vì viết 2 tầng vòng lặp if lồng nhau rườm rà, em bóc tách trực tiếp thuộc tính { status, total } ngay tại tham số của hàm mũi tên để lọc ra các đơn hàng thỏa mãn điều kiện nhanh gọn.
+* map() tạo Object động: Em áp dụng phương pháp toán học nhân với 0.9 để tính toán trực tiếp thuộc tính finalTotal thay vì phải khai báo biến item rỗng rồi gán thủ công từng dòng như cũ. Đồng thời, áp dụng thuộc tính viết tắt của ES6 (như thuộc tính id tương đương id: id, customer tương đương customer: customer).
+* sort() toán học thay thế cho Bubble Sort: Loại bỏ hoàn toàn 2 vòng lặp for lồng nhau chạy thuật toán hoán đổi vị trí thủ công cồng kềnh bằng phương thức .sort() chuẩn của JS. Hàm so sánh (a, b) => b.finalTotal - a.finalTotal đảm bảo mảng được sắp xếp theo thứ tự giảm dần (descending) tối ưu nhất.
+
+---
+
+## CÂU C2 — THIẾT KẾ THƯ VIỆN MINIARRAY (HÀM BẬC CAO TỰ VIẾT)
+
+Dưới đây là mã nguồn xây dựng thư viện miniArray bằng cách sử dụng vòng lặp cơ bản và câu lệnh điều kiện để tái cấu trúc lại các phương thức cốt lõi đúng chuẩn thuật toán của JavaScript:
+
+const miniArray = {
+    // 1. Tự viết hàm map: Duyệt qua mảng và áp dụng hàm biến đổi fn lên từng phần tử
+    map(arr, fn) {
+        const result = [];
+        for (let i = 0; i < arr.length; i++) {
+            // Đẩy kết quả sau khi thực thi hàm callback fn(element, index) vào mảng mới
+            result.push(fn(arr[i], i));
+        }
+        return result;
+    },
+
+    // 2. Tự viết hàm filter: Giữ lại các phần tử thỏa mãn điều kiện của hàm kiểm tra fn
+    filter(arr, fn) {
+        const result = [];
+        for (let i = 0; i < arr.length; i++) {
+            // Nếu hàm callback fn trả về kết quả là Truthy (đạt điều kiện)
+            if (fn(arr[i], i)) {
+                result.push(arr[i]);
+            }
+        }
+        return result;
+    },
+
+    // 3. Tự viết hàm reduce: Tích lũy các phần tử của mảng thành một giá trị duy nhất
+    reduce(arr, fn, initialValue) {
+        // Biện luận xử lý giá trị khởi tạo (Mẹo cấu trúc của JavaScript gốc)
+        let accumulator = initialValue !== undefined ? initialValue : arr[0];
+        let startIndex = initialValue !== undefined ? 0 : 1;
+
+        for (let i = startIndex; i < arr.length; i++) {
+            // Cập nhật giá trị tích lũy luân phiên qua từng vòng lặp
+            accumulator = fn(accumulator, arr[i], i);
+        }
+        return accumulator;
+    }
+};
+
+// ==========================================================================
+// CHẠY THỬ BỘ KIỂM TRA (TEST CASES PHẢI PASS ĐÚNG THEO ĐỀ BÀI)
+// ==========================================================================
+
+console.log("=== TEST MINIARRAY LIBRARY ===");
+
+// Test hàm map (Nhân đôi từng phần tử)
+console.log(miniArray.map([1, 2, 3], x => x * 2));        
+// Kết quả trả về: → [2, 4, 6]
+
+// Test hàm filter (Lọc các số lớn hơn 2)
+console.log(miniArray.filter([1, 2, 3, 4], x => x > 2));    
+// Kết quả trả về: → [3, 4]
+
+// Test hàm reduce (Tính tổng toàn bộ mảng dữ liệu với giá trị gốc ban đầu bằng 0)
+console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b, 0)); 
+// Kết quả trả về: → 10
+
+// Kiểm tra thêm trường hợp reduce đặc biệt không truyền giá trị khởi tạo initialValue
+console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b)); 
+// Kết quả trả về: → 10 (Vẫn chạy chính xác)
