@@ -87,3 +87,145 @@ Trong JavaScript, chỉ có duy nhất **8 giá trị** sau đây được đị
 * `if (null) console.log("E");`          --> Không in (null là Falsy).
 * `if (0) console.log("F");`             --> Không in (số 0 là Falsy).
 * `if (-1) console.log("G");`            -->
+
+
+# PHẦN C 
+
+## CÂU C1 — DEBUG JAVASCRIPT
+
+Đoạn mã đề bài cung cấp chứa tổng cộng 6 lỗi từ lỗi cú pháp logic cho đến lỗi bộ nhớ bất đồng bộ. Dưới đây là phần bóc tách chi tiết:
+
+### 1. Danh sách 6 lỗi, giải thích và cách sửa:
+
+* Lỗi 1: Phép gán sai logic tại câu lệnh điều kiện (giaSauGiam = 0)
+  - Giải thích: Đề bài đang viết "if (giaSauGiam = 0)". Dấu "=" duy nhất là phép gán giá trị, biến giaSauGiam bị ép về số 0 (Falsy) nên khối lệnh bên trong không bao giờ chạy. Muốn so sánh ta bắt buộc phải dùng dấu "==" hoặc "===".
+  - Cách sửa: Đổi thành "if (giaSauGiam === 0)".
+
+* Lỗi 2: Kiểu dữ liệu không chuẩn xác ở dòng test 1 ("100000")
+  - Giải thích: Tham số đầu tiên truyền vào là một chuỗi chữ "100000". Dù JavaScript có cơ chế ép kiểu ngầm khi làm phép toán nhân/chia, việc để kiểu dữ liệu không chuẩn xác ngay từ đầu rất dễ gây lỗi toán học nếu cấu trúc tính toán phức tạp hơn hoặc khi cộng chuỗi.
+  - Cách sửa: Sửa lại lúc gọi hàm test thành kiểu số chuẩn: tinhGiaGiamGia(100000, 20).
+
+* Lỗi 3: Lỗi ẩn liên quan đến từ khóa "var" trong vòng lặp kết hợp setTimeout
+  - Giải thích: Vòng lặp đang dùng "for (var i = 0; i < 5; i++)". Vì từ khóa "var" không có tính chất Block Scope (phạm vi khối nhọn) mà hoạt động theo cơ chế Function/Global Scope, biến i bị đẩy ra ngoài phạm vi vòng lặp thành biến toàn cục. Hàm setTimeout là tác vụ bất đồng bộ, nó sẽ đợi 1 giây mới chạy. Trong 1 giây đó, vòng lặp for đồng bộ đã chạy xong vèo một cái và tăng giá trị i lên bằng 5. Khi hết 1 giây, cả 5 hàm callback của setTimeout đồng loạt kích hoạt, chúng lấy giá trị i hiện tại ở bộ nhớ toàn cục (đang bằng 5) để in ra. Kết quả là màn hình xuất hiện 5 dòng chữ "Item 5" giống hệt nhau thay vì chạy từ 0 đến 4.
+  - Cách sửa: Thay thế từ khóa "var" thành "let": for (let i = 0; i < 5; i++). Từ khóa "let" có tính chất Block Scope, tại mỗi vòng lặp nó sẽ tự động tạo ra một phạm vi bộ nhớ đóng kín riêng biệt để lưu giữ chính xác giá trị i tại vòng lặp đó cho hàm setTimeout.
+
+* Lỗi 4: Thiếu kiểm tra kiểu dữ liệu đầu vào (Validation)
+  - Giải thích: Hàm không hề chặn trường hợp nếu người dùng truyền chuỗi chữ không thể đổi thành số (như truyền vào chữ "abc").
+  - Cách sửa: Bổ sung điều kiện kiểm tra isNaN(giaBan) hoặc isNaN(phanTramGiam) lên đầu hàm.
+
+* Lỗi 5: Trả về thông báo lỗi dạng Chuỗi chữ trộn lẫn với phép tính số
+  - Giải thích: Khi phanTramGiam > 100, hàm trả về chuỗi "Phần trăm giảm không hợp lệ". Khi gán chuỗi này vào phép toán cộng chuỗi ở dòng test 2: console.log("Giá: " + gia2) -> Giao diện sẽ in ra dòng chữ "Giá: Phần trăm giảm không hợp lệ", nhìn rất thiếu chuyên nghiệp và dễ gây lỗi hệ thống nếu hàm này nằm trong một chuỗi tính toán hóa đơn lớn.
+  - Cách sửa: Trả về giá trị null hoặc ném ra một lỗi rõ ràng.
+
+* Lỗi 6: Lỗi thiếu dấu chấm phẩy (Semicolon) kết thúc câu lệnh ở một số dòng
+  - Giải thích: JavaScript có cơ chế tự chèn dấu chấm phẩy (ASI), tuy nhiên việc thiếu dấu chấm phẩy ở cuối các dòng gán biến giamGia, return giaSauGiam làm code lỏng lẻo và dễ bị lỗi dính dòng khi gộp file (Minify code).
+  - Cách sửa: Thêm dấu ";" đầy đủ vào cuối mỗi câu lệnh.
+
+### 2. Đoạn code sau khi đã được Refactor sạch lỗi hoàn chỉnh:
+
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+    const gia = Number(giaBan);
+    const phanTram = Number(phanTramGiam);
+
+    if (isNaN(gia) || isNaN(phanTram) || phanTram < 0 || phanTram > 100) {
+        return null; 
+    }
+    
+    const giamGia = (gia * phanTram) / 100;
+    const giaSauGiam = gia - giamGia;
+    
+    if (giaSauGiam === 0) {
+        console.log("Sản phẩm miễn phí!");
+    }
+    
+    return giaSauGiam;
+}
+
+const gia = tinhGiaGiamGia(100000, 20);
+console.log("Giá sau giảm: " + (gia !== null ? gia + "đ" : "Lỗi dữ liệu"));
+
+const gia2 = tinhGiaGiamGia(50000, 110);
+console.log("Giá: " + (gia2 !== null ? gia2 + "đ" : "Phần trăm giảm không hợp lệ"));
+
+for (let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log("Item " + i);
+    }, 1000);
+}
+
+---
+
+## CÂU C2 — BÀI TOÁN THỰC TẾ: TÍNH HÓA ĐƠN NHÀ HÀNG
+
+Dưới đây là mã nguồn thuật toán tính toán chiết khấu, dồn thuế VAT, cộng phí dịch vụ và định dạng bảng hóa đơn thỏi vuông vắn bằng hàm padEnd và padStart trong JavaScript:
+
+/**
+ * Hàm in hóa đơn chi tiết cho nhà hàng
+ * @param {Array} items - Danh sách món [{ name: "Tên", price: giá, quantity: số lượng }]
+ * @param {boolean} isWednesday - Hôm nay có phải là thứ 4 không (true/false)
+ * @param {number} tipPercentage - Phần trăm tiền Tip tùy chọn (mặc định là 5)
+ */
+function inHoaDonNhaHang(items, isWednesday = false, tipPercentage = 5) {
+    let tongCongTho = 0;
+    for (let i = 0; i < items.length; i++) {
+        tongCongTho += items[i].price * items[i].quantity;
+    }
+
+    let phanTramGiamGia = 0;
+    if (tongCongTho > 1000000) {
+        phanTramGiamGia = 15; 
+    } else if (tongCongTho > 500000) {
+        phanTramGiamGia = 10; 
+    }
+
+    if (isWednesday) {
+        phanTramGiamGia += 5;
+    }
+
+    let tienGiamGia = (tongCongTho * phanTramGiamGia) / 100;
+    let tienSauGiam = tongCongTho - tienGiamGia;
+
+    let tienVAT = (tienSauGiam * 8) / 100;
+    let tienTip = (tienSauGiam * tipPercentage) / 100;
+
+    let tongThanhToan = tienSauGiam + tienVAT + tienTip;
+
+    console.log("╔══════════════════════════════════════╗");
+    console.log("║        HÓA ĐƠN NHÀ HÀNG              ║");
+    console.log("╠══════════════════════════════════════╣");
+
+    for (let i = 0; i < items.length; i++) {
+        const mon = items[i];
+        const stringGiaMon = `${mon.price / 1000}k`;
+        const stringThanhTienMon = `${(mon.price * mon.quantity) / 1000}k`;
+        
+        let textDongMon = `║ ${i + 1}. ${mon.name.padEnd(10)} x${mon.quantity}    @${stringGiaMon.padEnd(4)} = ${stringThanhTienMon}`;
+        textDongMon = textDongMon.padEnd(39) + "║";
+        console.log(textDongMon);
+    }
+
+    console.log("╠══════════════════════════════════════╣");
+    
+    function inDongTongKet(nhan, soTien) {
+        const soFormat = String(soTien.toLocaleString('vi-VN')) + "đ";
+        let textDong = `║ ${nhan.padEnd(20)} ${soFormat.padStart(15)}`;
+        console.log(textDong.padEnd(39) + "║");
+    }
+
+    inDongTongKet("Tổng cộng:", tongCongTho);
+    inDongTongKet(`Giảm giá (${phanTramGiamGia}%):`, tienGiamGia);
+    inDongTongKet("VAT (8%):", tienVAT);
+    inDongTongKet(`Tip (${tipPercentage}%):`, tienTip);
+
+    console.log("╠══════════════════════════════════════╣");
+    inDongTongKet("THANH TOÁN:", tongThanhToan);
+    console.log("╚══════════════════════════════════════╝");
+}
+
+const danhSachMonAn = [
+    { name: "Phở bò", price: 65000, quantity: 2 },
+    { name: "Trà đá", price: 5000, quantity: 3 },
+    { name: "Bún chả", price: 55000, quantity: 1 }
+];
+
+inHoaDonNhaHang(danhSachMonAn, false, 5);
