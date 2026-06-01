@@ -1,0 +1,36 @@
+/* ==========================================================================
+   BÀI 2.2 — BLOG LAYOUT SPECIFIC STYLES
+   ========================================================================== */
+
+/* Hiệu ứng nhấc card và đổ bóng mịn khi người dùng lướt chuột qua bài viết */
+.blog-card-lift {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.blog-card-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Định dạng các thẻ từ khóa (Tags Cloud) có độ phản hồi khi hover */
+.tag-hover {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.tag-hover:hover {
+    background-color: var(--bs-primary) !important;
+    color: white !important;
+    border-color: var(--bs-primary) !important;
+}
+
+/* Hiệu ứng trượt nhẹ sang phải khi rê chuột vào danh mục (Categories) */
+.list-group-item-action {
+    transition: padding-left 0.2s ease;
+}
+
+.list-group-item-action:hover {
+    padding-left: 8px !important;
+    color: var(--bs-primary) !important;
+    background-color: transparent !important;
+}

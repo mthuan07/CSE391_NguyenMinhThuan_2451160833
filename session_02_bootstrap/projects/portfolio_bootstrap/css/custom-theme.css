@@ -1,0 +1,109 @@
+/* ==========================================================================
+   BÀI 2.4: THEME CUSTOMIZE (OVERRIDE BOOTSTRAP THEME VARIABLES)
+   ========================================================================== */
+:root {
+    /* 1. Sửa đổi tông màu chủ đạo --bs-primary từ Indigo sang Teal/Green theo Specs */
+    --bs-primary: #0ea5e9;          /* Chuyển sang tông màu xanh Teal biển hiện đại */
+    --bs-primary-rgb: 14, 165, 233;
+    --bs-primary-bg-subtle: #e0f2fe;
+
+    /* 2. Custom Spacing Scale hệ thống */
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+
+    /* 3. Tùy biến bo cong góc viền mượt hơn mặc định */
+    --bs-border-radius: 12px;
+    --bs-border-radius-lg: 16px;
+    
+    /* Màu dốc riêng cho chữ logo */
+    --color-secondary: #22c55e;    /* Màu Green phối hợp cùng Teal */
+}
+
+/* Override màu nền nút bấm chủ đạo đồng bộ biến màu mới */
+.btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+}
+.btn-primary:hover {
+    background-color: #0284c7 !important;
+    border-color: #0284c7 !important;
+}
+
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+/* ==========================================================================
+   CORE COMPONENT HOVER EFFECTS & STYLING ARTIFACTS
+   ========================================================================== */
+.hero-section {
+    min-height: 100vh;
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, var(--bs-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Đường gạch trang trí tiêu đề khối */
+.section-title-line {
+    position: relative;
+    padding-bottom: 12px;
+}
+.section-title-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--bs-primary);
+    border-radius: 2px;
+}
+.section-title-line.center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Hiệu ứng lướt card portfolio */
+.project-card {
+    position: relative;
+}
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.5) 60%, transparent 100%) !important;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+/* Hiệu ứng nhấc nhẹ bài viết Blog */
+.blog-card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.blog-card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* Tương tác Tags cloud */
+.tag-hover {
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.tag-hover:hover {
+    background-color: var(--bs-primary) !important;
+    color: white !important;
+    border-color: var(--bs-primary) !important;
+}
+
+.social-hover {
+    transition: background-color 0.2s;
+}
+.social-hover:hover {
+    background-color: var(--bs-primary) !important;
+}

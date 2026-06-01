@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Layout & Comments | Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom-theme.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/comments.css">
+</head>
+<body class="bg-light">
+
+    <header class="main-header sticky-top bg-white border-bottom">
+        <nav class="navbar navbar-expand-md navbar-light container py-3">
+            <a class="navbar-brand fw-bold text-gradient fs-4" href="index.html">YourName</a>
+            <div class="navbar-nav gap-3 ms-auto flex-row">
+                <a class="nav-link fw-semibold px-2" href="index.html">← Back to Portfolio</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-5">
+        <div class="row g-4">
+            <main class="col-12 col-lg-8">
+                <h1 class="fw-bold mb-4">Dự Án & Chia Sẻ Công Nghệ</h1>
+                
+                <article class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden blog-card-lift">
+                    <img src="https://via.placeholder.com/800x400" class="card-img-top object-fit-cover" alt="Post Banner" style="max-height: 280px;">
+                    <div class="card-body p-4">
+                        <div class="d-flex gap-2 mb-2">
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3">Web Development</span>
+                            <span class="text-muted small">June 1, 2026</span>
+                        </div>
+                        <h2 class="card-title h3 fw-bold mb-3">Làm thế nào tôi tối ưu hiệu năng render 100% Client-Side</h2>
+                        <p class="card-text text-muted">Chia sẻ kiến trúc Pipeline và kĩ thuật tận dụng DocumentFragment để gom cụm 1000 phần tử DOM, giúp giảm thiểu tối đa số lần Reflow và tăng tốc độ hiển thị giao diện lên gấp 10 lần.</p>
+                        <a href="#" class="btn btn-primary px-4 rounded-pill fw-semibold">Read More</a>
+                    </div>
+                </article>
+
+                <section class="bg-white rounded-4 p-4 shadow-sm my-5">
+                    <h3 class="fw-bold text-dark mb-4">Discussion (3 comments)</h3>
+                    
+                    <div class="d-flex gap-3 mb-4 align-items-start">
+                        <img src="https://via.placeholder.com/50x50" class="rounded-circle border" alt="User Avatar">
+                        <div class="w-100">
+                            <form>
+                                <div class="mb-3">
+                                    <textarea class="form-control rounded-3" rows="3" required placeholder="Viết bình luận công khai của bạn tại đây..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm px-4 rounded-pill fw-semibold">Post Comment</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="comment-threads">
+                        <div class="comment-item d-flex gap-3 mb-4">
+                            <img src="https://via.placeholder.com/50x50" class="rounded-circle border" alt="Avatar">
+                            <div>
+                                <div class="bg-light p-3 rounded-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <h6 class="fw-bold text-dark mb-0 me-5">Nguyễn Văn Thuận</h6>
+                                        <span class="text-muted small">2 hours ago</span>
+                                    </div>
+                                    <p class="text-muted small mb-0">Bài viết chia sẻ kĩ thuật gộp DOM ảo DocumentFragment rất hay và thực chiến! Áp dụng vào dự án công ty chạy mượt hẳn.</p>
+                                </div>
+                                <button class="btn btn-link btn-sm text-decoration-none fw-semibold text-primary ps-1 mt-1">Reply</button>
+                                
+                                <div class="comment-reply d-flex gap-3 mt-3 border-start ps-3">
+                                    <img src="https://via.placeholder.com/40x40" class="rounded-circle border" alt="Avatar">
+                                    <div class="w-100">
+                                        <div class="bg-light p-3 rounded-3">
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <h6 class="fw-bold text-dark mb-0 me-5">Author [YourName]</h6>
+                                                <span class="text-muted small">1 hour ago</span>
+                                            </div>
+                                            <p class="text-muted small mb-0">Cảm ơn Thuận nhé! Cứ tận dụng kĩ thuật này kết hợp với Event Delegation là bao mượt bộ nhớ RAM luôn nha.</p>
+                                        </div>
+                                        <button class="btn btn-link btn-sm text-decoration-none fw-semibold text-primary ps-1 mt-1">Reply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="col-12 col-lg-4">
+                <div class="sticky-top" style="top: 90px; z-index: 10;">
+                    
+                    <div class="card border-0 shadow-sm rounded-4 mb-4 p-4 bg-white">
+                        <h4 class="fw-bold mb-3 text-dark">Categories</h4>
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 bg-transparent fw-medium">
+                                Web Development <span class="badge bg-secondary-subtle text-secondary rounded-pill">12</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 bg-transparent fw-medium">
+                                UI/UX Design <span class="badge bg-secondary-subtle text-secondary rounded-pill">5</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 bg-transparent fw-medium">
+                                Machine Learning <span class="badge bg-secondary-subtle text-secondary rounded-pill">3</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <h4 class="fw-bold mb-3 text-dark">Tags Cloud</h4>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark border p-2 px-3 rounded-pill cursor-pointer tag-hover">React</span>
+                            <span class="badge bg-light text-dark border p-2 px-3 rounded-pill cursor-pointer tag-hover">Bootstrap5</span>
+                            <span class="badge bg-light text-dark border p-2 px-3 rounded-pill cursor-pointer tag-hover">JavaScript</span>
+                            <span class="badge bg-light text-dark border p-2 px-3 rounded-pill cursor-pointer tag-hover">CSS3</span>
+                            <span class="badge bg-light text-dark border p-2 px-3 rounded-pill cursor-pointer tag-hover">Node.js</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- 1. Đây là dòng nhúng Bootstrap JS có sẵn ở đáy ảnh Screenshot 2026-06-01 142118.png -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 2. Bạn dán thêm dòng nhúng file main.js này vào ngay phía dưới -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

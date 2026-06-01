@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Portfolio | Creative Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom-theme.css">
+</head>
+<body>
+
+    <header class="main-header sticky-top bg-light border-bottom">
+        <nav class="navbar navbar-expand-md navbar-light container py-3">
+            <a class="navbar-brand fw-bold text-gradientfs-4" href="#">YourName</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#portfolioNav" aria-controls="portfolioNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="portfolioNav">
+                <div class="navbar-nav gap-3 mt-3 mt-md-0 text-center">
+                    <a class="nav-link fw-semibold px-2" href="#about">About</a>
+                    <a class="nav-link fw-semibold px-2" href="#skills">Skills</a>
+                    <a class="nav-link fw-semibold px-2" href="#portfolio">Portfolio</a>
+                    <a class="nav-link fw-semibold px-2" href="blog.html">Blog</a>
+                    <a class="nav-link fw-semibold px-2" href="#contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section d-flex align-items-center justify-content-center text-center bg-light">
+            <div class="container py-5">
+                <h1 class="display-3 fw-extrabold text-dark mb-3">Hi, I'm [Your Name]</h1>
+                <p class="lead text-secondary fs-4 mb-5">Full-Stack Developer | UI Designer | Problem Solver</p>
+                <a href="#portfolio" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold shadow-sm cta-scale">View My Work</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-5 bg-white">
+            <div class="container py-4">
+                <div class="row align-items-center g-5">
+                    <div class="col-12 col-md-5 text-center">
+                        <img src="https://via.placeholder.com/400x400" alt="Profile Photo" class="img-fluid rounded-circle shadow-lg" style="max-width: 300px;">
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <h2 class="fw-bold text-dark mb-4 section-title-line">About Me</h2>
+                        <p class="fs-5 text-primary fw-light mb-3">I'm a passionate developer with 3+ years of experience building web applications.</p>
+                        <p class="text-muted lh-base">Specialized in Frontend development with React and Vue. Also experienced in Backend with Node.js and Python. Sử dụng Bootstrap 5 giúp tôi tối ưu hóa tốc độ phát triển sản phẩm, đảm bảo hệ thống Grid phân bổ giao diện phản hồi nhịp nhàng trên mọi thiết bị di động.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-5 bg-light">
+            <div class="container py-4">
+                <h2 class="fw-bold text-dark text-center mb-5 section-title-line center">My Skills</h2>
+                <div class="row g-4">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between mb-2 fw-bold text-dark">
+                            <span>HTML5</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between mb-2 fw-bold text-dark">
+                            <span>CSS3</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between mb-2 fw-bold text-dark">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between mb-2 fw-bold text-dark">
+                            <span>React</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress" style="height: 12px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-5 bg-white">
+            <div class="container py-4">
+                <h2 class="fw-bold text-dark text-center mb-5 section-title-line center">My Portfolio</h2>
+                
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden project-card">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top object-fit-cover" alt="E-Commerce System" style="aspect-ratio: 4/3;">
+                            <div class="card-body bg-dark text-white d-flex flex-column justify-content-end p-4 project-overlay">
+                                <h5 class="card-title fw-bold mb-1">E-Commerce Website</h5>
+                                <p class="card-text text-light small mb-0">React + Node.js [Web]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden project-card">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top object-fit-cover" alt="SaaS Dashboard" style="aspect-ratio: 4/3;">
+                            <div class="card-body bg-dark text-white d-flex flex-column justify-content-end p-4 project-overlay">
+                                <h5 class="card-title fw-bold mb-1">SaaS Dashboard</h5>
+                                <p class="card-text text-light small mb-0">Vue.js + Firebase [Web]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 overflow-hidden project-card">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top object-fit-cover" alt="Mobile Trading App" style="aspect-ratio: 4/3;">
+                            <div class="card-body bg-dark text-white d-flex flex-column justify-content-end p-4 project-overlay">
+                                <h5 class="card-title fw-bold mb-1">Crypto Mobile Wallet</h5>
+                                <p class="card-text text-light small mb-0">Flutter + Rust [Mobile]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-5 bg-light">
+            <div class="container py-4">
+                <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+                    <div class="row g-5">
+                        <div class="col-12 col-md-5">
+                            <h3 class="fw-bold text-dark mb-3">Contact Information</h3>
+                            <p class="text-muted mb-4">Feel free to reach out. I'm always open to discussing new projects, creative ideas or opportunities.</p>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <span class="fs-4 bg-light p-2 rounded-3 text-primary">📧</span>
+                                <span class="fw-medium text-dark">your.email@example.com</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="fs-4 bg-light p-2 rounded-3 text-primary">📍</span>
+                                <span class="fw-medium text-dark">Hanoi, Vietnam</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-7">
+                            <form class="needs-validation">
+                                <div class="mb-3">
+                                    <label for="formName" class="form-label fw-semibold">Name</label>
+                                    <input type="text" class="form-control py-2" id="formName" required placeholder="Nhập tên của bạn">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formEmail" class="form-label fw-semibold">Email</label>
+                                    <input type="email" class="form-control py-2" id="formEmail" required placeholder="name@example.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formMessage" class="form-label fw-semibold">Message</label>
+                                    <textarea class="form-control" id="formMessage" rows="4" required placeholder="Lời nhắn gửi tới tôi..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4 align-items-center text-center">
+                <div class="col text-md-start fs-4 fw-bold text-white">YourName</div>
+                <div class="col text-secondary">Building digital experiences</div>
+                <div class="col text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="text-white bg-secondary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center social-hover" style="width: 40px; height: 40px;">GH</a>
+                        <a href="#" class="text-white bg-secondary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center social-hover" style="width: 40px; height: 40px;">LN</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="text-center text-secondary small">&copy; 2026 YourName. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- 1. Đây là dòng nhúng Bootstrap JS có sẵn ở đáy ảnh Screenshot 2026-06-01 142118.png -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 2. Bạn dán thêm dòng nhúng file main.js này vào ngay phía dưới -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
