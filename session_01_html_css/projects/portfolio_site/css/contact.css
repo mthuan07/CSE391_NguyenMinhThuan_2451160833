@@ -1,0 +1,120 @@
+/* --- BÀI 1.4: CONTACT FORM SECTION (Validation UI) --- */
+.contact-section {
+    padding: 6rem 0;
+    background-color: var(--color-light);
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* 2 cột lề Desktop */
+    gap: 4rem;
+    background-color: white;
+    padding: 3.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+
+.contact-desc {
+    color: var(--color-text);
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.info-item .icon {
+    font-size: 1.25rem;
+    background: rgba(99, 102, 241, 0.08);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.info-text {
+    font-weight: 500;
+    color: var(--color-dark);
+}
+
+.form-group {
+    margin-bottom: 1.5rem; /* Khoảng cách 1.5rem Specs */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem; /* Khoảng cách 0.5rem Specs */
+    font-weight: 500;
+    color: var(--color-dark);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.875rem 1rem; /* Đúng thông số padding Specs */
+    border: 2px solid #e2e8f0; /* Đúng viền Spec gốc */
+    border-radius: 8px;
+    font-size: 16px; /* Đảm bảo cỡ chữ mượt chống phóng màn hình trên mobile */
+    font-family: inherit;
+    color: var(--color-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Đúng Hint kỹ thuật kéo lề dọc */
+    min-height: 120px; /* Khớp barem xử lý */
+}
+
+/* Trạng thái focus quầng bóng mờ nhạt 3px đúng Hint specs */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* --- CSS VALIDATION UI FEEDBACK --- */
+/* Khi người dùng bỏ trống trường bắt buộc, tự dội đổi màu viền sắc thái cảnh báo phụ */
+.contact-form input:invalid:not(:placeholder-shown),
+.contact-form textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--color-secondary);
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.3);
+}
+
+/* Mobile responsive form stacked */
+@media (max-width: 767px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr; /* Stacked 1 hàng dọc đứng lề mobile */
+        padding: 2rem 1.5rem;
+        gap: 2.5rem;
+    }
+}

@@ -1,0 +1,139 @@
+/* --- BÀI 1.3: PORTFOLIO GRID GALLERY & CSS LIGHTBOX --- */
+.portfolio-section {
+    padding: 6rem 0;
+    background-color: white;
+}
+
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.portfolio-grid {
+    display: grid;
+    /* Áp dụng kỹ thuật co giãn tự động tinh vi auto-fill + minmax của Troubleshooting chỉ thị */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 1.5rem; /* Đúng khoảng cách gap 1.5rem chỉ định */
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.portfolio-item img {
+    width: 100%;
+    aspect-ratio: 4/3; /* Khóa cứng tỉ lệ ảnh 4:3 chống vỡ phom */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* Hover: Phóng ảnh zoom nhẹ 1.1 cực chất của Specs */
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    /* Dốc màu gradient thẫm che mờ đổ chữ đúng Hint cấu trúc chỉ định */
+    background: linear-gradient(to top, rgba(30, 41, 59, 0.95) 0%, rgba(30, 41, 59, 0.6) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0; /* Ban đầu giấu kín */
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1; /* Di chuột Hover dâng mượt hiện hình lớp phủ */
+}
+
+.portfolio-overlay h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.portfolio-overlay p {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+}
+
+/* --- CƠ CHẾ CSS-ONLY LIGHTBOX (:target Selector) --- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.97);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    padding: 2rem;
+}
+
+/* Bí thuật bẻ URL: Khi băm # trên URL khớp ID hộp thoại -> Modal tự bung không dùng JS */
+.lightbox:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: white;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--color-primary);
+}
+
+/* Responsive quy chuẩn Breakpoints */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột trên Tablet */
+    }
+}
+@media (max-width: 767px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* 1 cột dốc đứng lề Mobile */
+    }
+}
