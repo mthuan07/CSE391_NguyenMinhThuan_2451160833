@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1: Quản Lý Sinh Viên - CSE391 K66</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Hệ Thống Quản Lý Sinh Viên</h1>
+            <p>Bài Thực Hành Số 3 - Khoa Công Nghệ Thông Tin</p>
+        </header>
+
+        <div id="toastNotification" class="toast-message hidden"></div>
+
+        <div class="action-bar">
+            <button id="btnOpenForm" class="btn btn-primary">+ Thêm sinh viên mới</button>
+        </div>
+
+        <section class="stats-grid">
+            <div class="stats-card">
+                <span class="stats-label">Tổng số sinh viên</span>
+                <span id="statTotalStudents" class="stats-value">0</span>
+            </div>
+            <div class="stats-card">
+                <span class="stats-label">Điểm trung bình cả lớp</span>
+                <span id="statAverageClassScore" class="stats-value">0.0</span>
+            </div>
+        </section>
+
+        <section class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mã SV</th>
+                        <th>Họ và Tên</th>
+                        <th>Ngày Sinh</th>
+                        <th>Lớp Học</th>
+                        <th>ĐTB</th>
+                        <th>Email</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    </tbody>
+            </table>
+        </section>
+    </div>
+
+    <div id="studentModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Thêm Sinh Viên Mới</h3>
+                <span id="btnCloseModal" class="close-icon">&times;</span>
+            </div>
+            <form id="studentForm" novalidate>
+                <input type="hidden" id="studentId">
+
+                <div class="form-group">
+                    <label for="studentCode">Mã sinh viên <span class="required">*</span></label>
+                    <input type="text" id="studentCode" required placeholder="Ví dụ: B26DCCN001">
+                    <div class="error-feedback" id="error-studentCode"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Họ và tên <span class="required">*</span></label>
+                    <input type="text" id="fullName" required placeholder="Nhập họ tên đầy đủ">
+                    <div class="error-feedback" id="error-fullName"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Ngày sinh <span class="required">*</span></label>
+                    <input type="date" id="dob" required>
+                    <div class="error-feedback" id="error-dob"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="className">Lớp học <span class="required">*</span></label>
+                    <input type="text" id="className" required placeholder="Ví dụ: K66-CSE391">
+                    <div class="error-feedback" id="error-className"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gpa">Điểm trung bình <span class="required">*</span></label>
+                    <input type="number" id="gpa" step="0.1" min="0" max="10" required placeholder="Thang điểm 10 (Ví dụ: 8.5)">
+                    <div class="error-feedback" id="error-gpa"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" required placeholder="username@example.com">
+                    <div class="error-feedback" id="error-email"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnCancelForm" class="btn btn-secondary">Hủy bỏ</button>
+                    <button type="submit" id="btnSubmitForm" class="btn btn-success">Lưu dữ liệu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
