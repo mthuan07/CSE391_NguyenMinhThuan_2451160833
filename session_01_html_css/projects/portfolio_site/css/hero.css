@@ -1,0 +1,56 @@
+/* --- BÀI 1.1: HERO SECTION (FULL VIEWPORT HEIGHT Centering) --- */
+.hero {
+    min-height: 100vh; /* Full viewport height (100vh) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa hoàn hảo dọc */
+    align-items: center; /* Căn giữa hoàn hảo ngang */
+    text-align: center;
+    background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%), var(--color-light);
+    padding: 0 1.5rem;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 3.5rem; /* Đúng Specs 3.5rem trên Desktop */
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem; /* Đúng Specs Subtitle 1.25rem */
+    color: var(--color-text);
+    margin-bottom: 3rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effect: phóng tỉ lệ nhẹ + dồn dập bóng mờ shadow tỏa rộng */
+.cta-button:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* Mobile responsive typography */
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2.5rem; /* Đúng Specs 2.5rem trên Mobile */
+    }
+}
