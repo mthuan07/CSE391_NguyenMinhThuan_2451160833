@@ -1,0 +1,50 @@
+/* --- BÀI 1.2: ABOUT ME SECTION (2-Column Grid Layout) --- */
+.about-section {
+    padding: 6rem 0;
+    background-color: white;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Áp dụng đúng công thức thiết kế */
+    gap: 3rem; /* Khoảng cách gap đúng 3rem theo chỉ định Specs */
+    align-items: center;
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+}
+
+.about-avatar {
+    width: 300px; /* Thỏa mãn khổ 300x300px trên Desktop */
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%; /* circular bo tròn nguyên khối */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 4px solid var(--color-light);
+}
+
+.lead {
+    font-size: 1.25rem; /* Đúng kích thước lead text 1.25rem */
+    font-weight: 300;   /* Font-weight đúng 300 mịn mỏng */
+    color: var(--color-primary);
+    margin-bottom: 1.25rem;
+}
+
+.body-text {
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+/* Mobile responsive stacked layout */
+@media (max-width: 767px) {
+    .about-grid {
+        grid-template-columns: 1fr; /* Bóp sập về 1 hàng dọc stacked */
+        gap: 2rem;
+    }
+    .about-avatar {
+        width: 200px; /* Co sập kích thước đúng 200x200px trên Mobile Specs */
+        height: 200px;
+    }
+}
