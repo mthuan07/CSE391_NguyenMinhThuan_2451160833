@@ -1,0 +1,140 @@
+/* --- BÀI 1.1: STICKY HEADER NAVIGATION --- */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    text-decoration: none;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 1rem; /* Đúng đặc tả Nav Links: 1rem */
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+}
+
+/* Hiệu ứng thanh trượt gạch chân Underline mượt mà khi hover */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Giấu nút điều khiển Hamburger menu trên Desktop */
+.menu-toggle, .menu-icon {
+    display: none;
+}
+
+/* --- RESPONSIVE MOBILE HAMBURGER MENU HACK (CSS ONLY) --- */
+@media (max-width: 767px) {
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    .hamburger-line {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: var(--color-dark);
+        position: relative;
+        transition: background-color 0.3s ease;
+    }
+
+    .hamburger-line::before, .hamburger-line::after {
+        content: '';
+        position: absolute;
+        width: 22px;
+        height: 2px;
+        background-color: var(--color-dark);
+        transition: all 0.3s ease;
+    }
+
+    .hamburger-line::before { top: -6px; }
+    .hamburger-line::after { bottom: -6px; }
+
+    /* Bẻ gãy thanh điều hướng ngang sang dạng cột dọc Mobile */
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-light);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0; /* Chiều cao kịch khung bằng 0 để ẩn giấu */
+        overflow: hidden;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 1.25rem 0;
+        border-top: 1px solid rgba(0,0,0,0.03);
+    }
+
+    /* Kĩ thuật Checkbox Hack: Tích chọn bật mở xả Menu mượt mà không dùng JS */
+    .menu-toggle:checked ~ .nav-menu {
+        max-height: 300px;
+    }
+
+    /* Chuyển dấu ba gạch ngang sang dấu nhân X khi check */
+    .menu-toggle:checked ~ .menu-icon .hamburger-line {
+        background-color: transparent;
+    }
+    .menu-toggle:checked ~ .menu-icon .hamburger-line::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+    .menu-toggle:checked ~ .menu-icon .hamburger-line::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+    }
+}
