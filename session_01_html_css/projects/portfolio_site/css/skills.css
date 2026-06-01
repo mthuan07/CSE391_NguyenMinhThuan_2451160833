@@ -1,0 +1,48 @@
+/* --- BÀI 1.2: MY SKILLS SECTION (Progress bar dâng đầy) --- */
+.skills-section {
+    padding: 6rem 0;
+    background-color: var(--color-light);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cột lướt song song lề Desktop */
+    gap: 2rem 3rem;
+}
+
+.skill-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.skill-bar {
+    background: #e2e8f0; /* Đúng mã màu Spec nền thanh đệm */
+    height: 12px;        /* Chiều cao đúng khít 12px chỉ định */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    height: 100%;
+    width: 0; /* Khởi động bằng 0 phục vụ hiệu ứng dâng tràn transition */
+    border-radius: 10px;
+    transition: width 1.2s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+/* Hoạt ảnh tự dâng đầy tiến độ khít phom Specs không cần JS */
+.animate-html { width: 95%; }
+.animate-css  { width: 90%; }
+.animate-js   { width: 85%; }
+.animate-react{ width: 80%; }
+
+/* Mobile responsive layout */
+@media (max-width: 767px) {
+    .skills-grid {
+        grid-template-columns: 1fr; /* Co sập về 1 hàng độc lập lề mobile */
+        gap: 1.5rem;
+    }
+}
